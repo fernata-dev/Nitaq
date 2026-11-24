@@ -8,7 +8,7 @@ from pathlib import Path
 
 from nitaq import __version__
 
-COMMANDS = ("discover", "agents", "scan", "protect", "unprotect", "policy", "mcp-proxy", "hook", "bench", "demo", "ui", "shortcut", "agent", "gateway")
+COMMANDS = ("discover", "agents", "scan", "protect", "unprotect", "policy", "mcp-proxy", "hook", "bench", "demo", "ui", "app", "shortcut", "agent", "gateway")
 
 
 def _home(a) -> Path:
@@ -157,6 +157,11 @@ def cmd_ui(a) -> int:
     return serve(_home(a), _project(a), a.port, not a.no_browser, getattr(a, "classic", False))
 
 
+def cmd_app(a) -> int:
+    from nitaq.desktop import run
+    return run(_home(a), native=not a.browser)
+
+
 def cmd_shortcut(a) -> int:
     from nitaq.shortcut import run
     return run(_home(a), "remove" if a.remove else "install", a.dry_run)
@@ -243,6 +248,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--no-browser", action="store_true", help="only print the link")
     s.add_argument("--classic", action="store_true", help="open the phone-style app instead of the control center")
     s.set_defaults(fn=cmd_ui)
+
+    s = sub.add_parser("app", help="the Nitaq desktop app: the control center in its own window (no terminal needed)")
+    common(s)
+    s.add_argument("--browser", action="store_true", help="open in a browser app window instead of a native window")
+    s.set_defaults(fn=cmd_app)
 
     s = sub.add_parser("shortcut", help="add Nitaq to your app menu (Linux; opt-in)")
     s.add_argument("--home"); s.add_argument("--remove", action="store_true"); s.add_argument("--dry-run", action="store_true")

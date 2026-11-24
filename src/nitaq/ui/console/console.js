@@ -46,6 +46,8 @@ const L = {
     ch_think: "الوكيل بيفكّر…", ch_cli: "نفس الوكيل من الترمنال", ch_guard_off: "نِطاق مقفول للمقارنة (الخطر بيتمثّل بس)",
     ch_hint: "الوكيل شغال على Gemini في مجلد ~/nitaq-demo، وكل خطوة بيعملها بتعدّي على نِطاق. جرّب العرضين.",
     st_removed: "اتشال", st_held: "مستني",
+    key_h: "الوكيل محتاج مفتاح Gemini (مجاني)", key_p: "اعمل مفتاح من Google AI Studio والصقه هنا. بيتحفظ على جهازك بس، في ملف إعدادات خاص، ومش بيتبعت لأي حد غير Google.",
+    key_get: "اعمل مفتاح من AI Studio", key_ph: "الصق المفتاح هنا", key_save: "احفظ وشغّل الوكيل",
     p_h: "السياسة", p_p: "القرار بيتاخد من الفعل نفسه: رايح فين، وبيقرا إيه. جرّب أي فعل وشوف نِطاق هيقول إيه.",
     p_mode: "الوضع", p_allow: "العناوين المسموحة", p_secret: "ملفات سرية ممنوع قرايتها", p_try: "جرّب قرار", p_tool: "الأداة", p_args: "المدخلات (JSON)",
     p_check: "قرّر", allow_st: "مسموح", block_st: "مرفوض", in_scope: "جوه النطاق", out_scope: "خارج النطاق",
@@ -92,6 +94,8 @@ const L = {
     ch_think: "The agent is thinking…", ch_cli: "The same agent from a terminal", ch_guard_off: "Nitaq is off for the comparison (risks are only simulated)",
     ch_hint: "The agent runs on Gemini in ~/nitaq-demo, and every step it takes goes through Nitaq. Try the two demos.",
     st_removed: "Removed", st_held: "Held",
+    key_h: "The agent needs a Gemini key (free)", key_p: "Create a key in Google AI Studio and paste it here. It is saved on this computer only, in a private settings file, and sent to nobody but Google.",
+    key_get: "Create a key in AI Studio", key_ph: "paste the key here", key_save: "Save and start the agent",
     p_h: "Policy", p_p: "The decision comes from the action itself: where it goes and what it reads. Try any action and see what Nitaq says.",
     p_mode: "mode", p_allow: "allowed addresses", p_secret: "secret files nobody may read", p_try: "Try a decision", p_tool: "tool", p_args: "arguments (JSON)",
     p_check: "Decide", allow_st: "Allowed", block_st: "Refused", in_scope: "inside the scope", out_scope: "outside the scope",
@@ -471,7 +475,13 @@ async function poll() {
   } catch (e) { /* keep polling */ }
 }
 async function startAgent(reset) {
-  const r = await api("/api/agent/start", {lang, reset: !!reset});
+  let r;
+  try { r = await api("/api/agent/start", {lang, reset: !!reset}); }
+  catch (e) {
+    if (/gemini key/i.test(e.message)) { chat.needKey = true; render(); return; }
+    throw e;
+  }
+  chat.needKey = false;
   chat.started = true; chat.since = 0;
   if (chat.log) chat.log.textContent = "";
   for (const ev of r.events) { drawEvent(ev); chat.since = ev.n + 1; }
@@ -489,7 +499,14 @@ function agent(root) {
   const d = data.demo;
   root.append(head(T.a_h, T.ch_hint,
     chat.started ? h("button", {class: "btn sm", type: "button", text: T.ch_new, onclick: (e) => busy(e.currentTarget, () => startAgent(true))}) : null));
-  if (!chat.started) {
+  if (chat.needKey) {
+    const inp = h("input", {type: "password", class: "ltr", placeholder: T.key_ph, "aria-label": T.key_ph, autocomplete: "off"});
+    root.append(h("div", {class: "chat-start"}, h("h3", {text: T.key_h}), h("p", {class: "small", text: T.key_p}),
+      h("a", {class: "btn", href: "https://aistudio.google.com/apikey", target: "_blank", rel: "noopener noreferrer", text: T.key_get}),
+      h("div", {class: "acts"}, inp, h("button", {class: "btn ink", type: "button", text: T.key_save, onclick: (e) => busy(e.currentTarget, async () => {
+        await api("/api/agent/key", {key: inp.value.trim()}); inp.value = ""; await startAgent(false);
+      })}))));
+  } else if (!chat.started) {
     root.append(h("div", {class: "chat-start"},
       h("button", {class: "btn ink big", type: "button", text: T.ch_start, onclick: (e) => busy(e.currentTarget, () => startAgent(false))}),
       h("p", {class: "small", text: d.exists ? `${T.a_ws}: ${d.path}` : T.a_make})));

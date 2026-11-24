@@ -47,6 +47,11 @@ VARIANTS = [
 
 
 def main() -> int:
+    for stream in (sys.stdout, sys.stderr):      # Arabic output on Windows consoles and pipes (cp1252 by default)
+        try:
+            stream.reconfigure(encoding="utf-8")
+        except (AttributeError, ValueError):
+            pass
     tmp = Path(tempfile.mkdtemp(prefix="nitaq-meeting-"))
     home, project = build(tmp)
     pol_file = tmp / "policy.json"

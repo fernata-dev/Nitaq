@@ -70,7 +70,7 @@ main:focus{outline:none}
 .btn[disabled]{opacity:.5;cursor:progress;transform:none}
 .btn.sm{min-height:2rem;padding:.15rem .75rem;font-size:.82rem}
 .acts{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
-input[type=text],textarea,select{min-height:2.5rem;padding:.35rem .7rem;border:2px solid var(--ink);background:var(--sheet);font:400 .88rem var(--f-mono);color:var(--ink);caret-color:var(--red)}
+input[type=text],input[type=password],textarea,select{min-height:2.5rem;padding:.35rem .7rem;border:2px solid var(--ink);background:var(--sheet);font:400 .88rem var(--f-mono);color:var(--ink);caret-color:var(--red)}
 textarea{width:100%;min-height:6rem;resize:vertical;line-height:1.6}
 input::placeholder,textarea::placeholder{color:#6d6452}
 

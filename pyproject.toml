@@ -14,10 +14,14 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["pytest>=7"]
 tokenizer = ["tiktoken"]
+desktop = ["pywebview>=5"]
 
 [project.scripts]
 nitaq = "nitaq.cli:main"
 nitaq-bench = "nitaq_bench.cli:main"
+
+[project.gui-scripts]
+nitaq-app = "nitaq.desktop:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

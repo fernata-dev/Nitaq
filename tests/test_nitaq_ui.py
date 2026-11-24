@@ -219,3 +219,25 @@ def test_agent_runs_inside_the_window_and_asks_with_buttons(served):
             break
     assert any(e["type"] == "answer" and e["yes"] is False for e in d["events"])
     assert any(e["type"] == "model" and e["text"] == "done" for e in d["events"]) and d["mode"] == "restricted"
+
+
+def test_desktop_app_serves_the_console_and_doubles_as_the_cli(tmp_path, monkeypatch, capsys):
+    import urllib.request
+    from nitaq import desktop
+    from nitaq.ui import server as S
+    opened = []
+
+    def fake_open(url):                       # what the window does: load the page, then ping
+        opened.append(url)
+        base, tok = url.split("#token=")
+        with urllib.request.urlopen(base, timeout=10) as r:
+            assert r.status == 200 and b"console.js" in r.read()
+        req = urllib.request.Request(base.replace("/console/", "/api/ping"), headers={"X-Nitaq-Token": tok})
+        assert urllib.request.urlopen(req, timeout=10).status == 200
+        return "test"
+    monkeypatch.setattr(S, "open_window", fake_open)
+    monkeypatch.setattr(desktop, "POLL", 0.05)
+    monkeypatch.setattr(desktop, "CLOSE_AFTER", 0.1)    # "the window was closed" right after the ping
+    monkeypatch.setenv("NITAQ_NO_NATIVE", "1")
+    assert desktop.run(tmp_path) == 0 and "/console/#token=" in opened[0]
+    assert desktop.main(["agents"]) == 0                # with arguments the app is the nitaq command

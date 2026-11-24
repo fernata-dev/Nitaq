@@ -335,7 +335,8 @@ class App:
         d = self._gw_dir()
         d.mkdir(parents=True, exist_ok=True)
         port = int(body.get("port") or 8787)
-        cmd = [sys.executable, "-m", "nitaq", "gateway", "--port", str(port), "--home", str(self.home)]
+        base = [sys.executable] if getattr(sys, "frozen", False) else [sys.executable, "-m", "nitaq"]
+        cmd = base + ["gateway", "--port", str(port), "--home", str(self.home)]
         origin = str(body.get("allow_origin") or "").strip()
         if origin.startswith("https://") and " " not in origin:
             cmd += ["--allow-origin", origin]
@@ -390,6 +391,15 @@ class App:
                 raise Refused(400, str(exc)) from exc
         return self._agent.since(0)
 
+    def agent_key(self, body: dict) -> dict:
+        """Save the Gemini API key from the window (same private file as `nitaq agent --set-key`)."""
+        from nitaq.agent.gemini import save_key
+        key = str(body.get("key", "")).strip()
+        if not (20 <= len(key) <= 200) or any(c.isspace() for c in key):
+            raise Refused(400, "that does not look like a Gemini API key")
+        save_key(key)
+        return {"saved": True}
+
     def agent_send(self, body: dict) -> dict:
         ok = self._session().send(str(body.get("text", ""))[:4000])
         if not ok:
@@ -419,7 +429,8 @@ ROUTES_POST = {"/api/scan": "scan", "/api/protect/plan": "plan", "/api/protect/a
                "/api/policy/check": "check", "/api/gateway/start": "gateway_start", "/api/gateway/stop": "gateway_stop",
                "/api/gateway/act": "gateway_act", "/api/demo/init": "demo_init",
                "/api/console/refresh": "console_refresh", "/api/agent/start": "agent_start", "/api/agent/send": "agent_send",
-               "/api/agent/events": "agent_events", "/api/agent/answer": "agent_answer"}
+               "/api/agent/events": "agent_events", "/api/agent/answer": "agent_answer",
+               "/api/agent/key": "agent_key"}
 
 
 def make_handler(app: App, port_ref: dict):
