@@ -459,7 +459,7 @@ __def('app/about.js', function () {
 // "About" screen: the name, the three faces, privacy, honest limits.
 const {h, icon, t} = __req('app/dom.js');
 
-const VERSION = "0.4.0";
+const VERSION = "1.0.0";
 
 function aboutView(root, ctx) {
   const v = h("div", {class: "view"});

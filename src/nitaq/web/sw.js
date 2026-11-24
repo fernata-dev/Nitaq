@@ -1,7 +1,7 @@
 // Offline support. Network first (so updates show at once), cached copy when offline.
 // Only the app's own files are cached. /api/* (desktop mode) is never cached or intercepted.
 // The list is checked by tests/test_nitaq_web.py: every shipped file must be here.
-const CACHE = "nitaq-0.4.0";
+const CACHE = "nitaq-1.0.0";
 const FILES = [
   "./", "index.html", "app.css", "icon.svg", "manifest.webmanifest", "bundle.js", "engine/worker-bundle.js", "fonts.css",
   "app/main.js", "app/dom.js", "app/i18n.js", "app/check.js", "app/learn.js", "app/computer.js", "app/about.js",

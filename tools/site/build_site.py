@@ -159,6 +159,7 @@ def render(lang: str, data: dict) -> str:
         "doc_limits": f"{C.DOC}/docs/LIMITATIONS.md", "doc_install": f"{C.DOC}/docs/INSTALL.md",
         "doc_integrations": f"{C.DOC}/docs/INTEGRATIONS.md", "doc_ai": f"{C.DOC}/docs/AI_PROVENANCE.md",
         "doc_readme": f"{C.DOC}/README.md", "os_tabs": tabs, "os_panels": panels, "ledger_static": ledger,
+        "rel_url": f"{C.REPO}/releases/latest/download/", "rel_page": f"{C.REPO}/releases/latest",
         "ag_t1": transcript("agent-skill1.txt"), "ag_t2": transcript("agent-skill2.txt"),
     }
     out = re.sub(r"\{\{(\w+)\}\}", lambda m: values[m.group(1)], tpl)

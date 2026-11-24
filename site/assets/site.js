@@ -103,6 +103,14 @@ const ua = navigator.userAgent;
 const guess = /Windows/.test(ua) ? "win" : /Mac OS X/.test(ua) && !/iPhone|iPad/.test(ua) ? "mac" : /Ubuntu|Debian/.test(ua) ? "debian" : null;
 if (guess && document.getElementById("tab-" + guess)) selectOs(document.getElementById("tab-" + guess));
 
+// ------------------------------------------------------------ desktop downloads: the visitor's OS first
+const dl = document.getElementById("dl-rows");
+if (dl) {
+  const os = /Windows/.test(ua) ? "win" : /Mac OS X|Macintosh/.test(ua) && !/iPhone|iPad/.test(ua) ? "mac" : /Linux/.test(ua) && !/Android/.test(ua) ? "linux" : null;
+  const row = os && dl.querySelector(`li[data-os="${os}"]`);
+  if (row) { row.classList.add("mine"); dl.prepend(row); }
+}
+
 // ------------------------------------------------------------ shared case state (hero board + cases section)
 const SC = DEMO.data.scenarios;
 const state = {cur: 0, variant: 0};

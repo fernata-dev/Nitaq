@@ -27,7 +27,7 @@
   <a class="brand" href="#top"><img src="{{root}}app/icon.svg" alt="" width="30" height="30"><b>{{brand}}</b></a>
   <p class="bureau">{{bureau}}</p>
   <a class="lang" href="{{lang_href}}" lang="{{alt_lang}}" hreflang="{{alt_lang}}">{{lang_name}}</a>
-  <a class="btn btn-ink sm" href="#install">{{nav_cta}}</a>
+  <a class="btn btn-ink sm" href="#download">{{nav_cta}}</a>
 </header>
 
 <div class="file">
@@ -36,6 +36,7 @@
     <li><a href="#top">{{nav_top}}</a></li>
     <li><a href="#cases">{{nav_case}}</a></li>
     <li><a href="#film">{{nav_film}}</a></li>
+    <li><a href="#download">{{nav_dl}}</a></li>
     <li><a href="#agent">{{nav_agent}}</a></li>
     <li><a href="#connect">{{nav_connect}}</a></li>
     <li><a href="#how">{{nav_how}}</a></li>
@@ -136,6 +137,18 @@
       <a class="more" href="{{root}}assets/film/nitaq-demo.mp4" download>{{film_dl}}</a>
     </div>
   </div>
+</section>
+
+<!-- ============================================================ desktop app -->
+<section class="sec dl" id="download" aria-labelledby="dl-h">
+  <h2 id="dl-h">{{dl_h2}}</h2>
+  <p class="lead">{{dl_p}}</p>
+  <ul class="dl-rows" id="dl-rows">
+    <li data-os="win"><b>{{dl_win}}</b><code class="ltr">Nitaq-Windows-x64.exe · 14 MB</code><span class="small">{{dl_win_how}}</span><a class="btn btn-ink sm" href="{{rel_url}}Nitaq-Windows-x64.exe" rel="noopener noreferrer">{{dl_btn}}</a><em class="you">{{dl_yours}}</em></li>
+    <li data-os="mac"><b>{{dl_mac}}</b><code class="ltr">Nitaq-macOS.zip · 13 MB</code><span class="small">{{dl_mac_how}}</span><a class="btn btn-ink sm" href="{{rel_url}}Nitaq-macOS.zip" rel="noopener noreferrer">{{dl_btn}}</a><em class="you">{{dl_yours}}</em></li>
+    <li data-os="linux"><b>{{dl_lin}}</b><code class="ltr">Nitaq-Linux-x64.tar.gz · 22 MB</code><span class="small">{{dl_lin_how}}</span><a class="btn btn-ink sm" href="{{rel_url}}Nitaq-Linux-x64.tar.gz" rel="noopener noreferrer">{{dl_btn}}</a><em class="you">{{dl_yours}}</em></li>
+  </ul>
+  <p class="small">{{dl_note}} <a class="more" href="{{rel_page}}" rel="noopener noreferrer">{{dl_all}}</a></p>
 </section>
 
 <!-- ============================================================ agent + skills (real runs) -->

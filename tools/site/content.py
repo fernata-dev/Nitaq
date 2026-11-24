@@ -99,7 +99,7 @@ T = {
   "lang_name": "English", "lang_href": "en/index.html", "title": "نِطاق — أي فعل خارج النطاق مرفوض",
   "meta_desc": "نِطاق بيتركّب بين المساعد الذكي (Claude Code و Gemini CLI) وأدواته على جهازك، ويقرّر كل فعل حسب المكان اللي رايح له والملف اللي بيقراه — مش حسب لغة الكلام.",
   "skip": "اتخطّى للمحتوى",
-  "nav_how": "بيشتغل إزاي", "nav_demo": "جرّب النطاق", "nav_install": "التثبيت", "nav_limits": "الحدود", "nav_cta": "ثبّته",
+  "nav_how": "بيشتغل إزاي", "nav_demo": "جرّب النطاق", "nav_install": "التثبيت", "nav_limits": "الحدود", "nav_cta": "نزّل التطبيق",
   "hero_eyebrow": "مفتوح المصدر · Claude Code و Gemini CLI · لينكس وماك وويندوز",
   "hero_h1a": "المساعد ممكن يتخدع.", "hero_h1b": "النطاق لأ.",
   "hero_sub": "نِطاق بيتركّب بين المساعد الذكي وأدواته على جهازك. أي أمر مستخبي في إيميل أو صفحة أو ملف مهارة — بالمصري، بالفرانكو، أو متشفّر — لو حاول يبعت بياناتك لبرّه أو يقرا مفاتيحك، بيترفض لأنه برّه النطاق.",
@@ -189,6 +189,15 @@ T = {
   "foot_note": "نِطاق: مشروع ISEF (برمجيات / أمن سيبراني). البيئة وهمية بالكامل؛ العنوان الوحيد للمهاجم attacker@test.local.",
   "foot_sources": "مصادر:", "foot_font": "الخطوط: Noto Kufi Arabic وNoto Naskh Arabic وNoto Sans Mono (OFL).",
 
+  # ---- desktop app downloads (m24)
+  "nav_dl": "التطبيق", "dl_h2": "نزّل تطبيق نِطاق — من غير ترمنال",
+  "dl_p": "كل حاجة في الموقع ده موجودة في تطبيق واحد على جهازك: المساعدات والمهارات والـ Gateway ووكيل نِطاق بزراير وافق وارفض. بيشتغل على جهازك بس.",
+  "dl_win": "Windows 10 / 11", "dl_win_how": "دوس عليه مرتين. لو Windows قال «Windows protected your PC» دوس More info ثم Run anyway، لأن التطبيق لسه مش موقّع.",
+  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "فك الضغط، وانقل Nitaq لـ Applications، وأول مرة دوس كليك يمين ثم Open.",
+  "dl_lin": "Linux (x64)", "dl_lin_how": "فك الضغط وشغّل Nitaq/install.sh، وبعدين افتح Nitaq من قائمة التطبيقات.",
+  "dl_btn": "نزّل", "dl_yours": "ده جهازك", "dl_all": "كل الإصدارات والملاحظات",
+  "dl_note": "الوكيل محتاج مفتاح Gemini مجاني، وبتحطه في التطبيق مرة واحدة ومش بيطلع من جهازك. والمطورين يقدروا يثبّتوه بـ pipx زي ما تحت.",
+
   # ---- dossier redesign (m23)
   "bureau": "مكتب فحص أفعال الذكاء الاصطناعي · مشروع ISEF",
   "nav_top": "الملف", "nav_case": "القضايا", "nav_film": "الفيلم", "nav_connect": "اربط الـ AI",
@@ -237,7 +246,7 @@ T = {
   "lang_name": "العربية", "lang_href": "../index.html", "title": "Nitaq — any action outside the scope is refused",
   "meta_desc": "Nitaq installs between your AI agent (Claude Code, Gemini CLI) and its tools, and decides every action by where it goes and what it reads — not by the language of the text.",
   "skip": "Skip to content",
-  "nav_how": "How it works", "nav_demo": "Try the scope", "nav_install": "Install", "nav_limits": "Limits", "nav_cta": "Install",
+  "nav_how": "How it works", "nav_demo": "Try the scope", "nav_install": "Install", "nav_limits": "Limits", "nav_cta": "Get the app",
   "hero_eyebrow": "Open source · Claude Code & Gemini CLI · Linux, macOS, Windows",
   "hero_h1a": "Your agent can be fooled.", "hero_h1b": "The scope can't.",
   "hero_sub": "Nitaq installs between your AI agent and its tools. An order hidden in an e-mail, a page or a skill file — in Egyptian Arabic, Arabizi or Base64 — that tries to send your data out or read your keys is refused: it is outside the scope.",
@@ -326,6 +335,15 @@ T = {
   "foot_docs": "Docs", "foot_install": "Install", "foot_limits": "Limits", "foot_integrations": "Official sources", "foot_ai": "AI-assistance disclosure",
   "foot_note": "Nitaq: an ISEF project (software / cybersecurity). The environment is fully mock; the only attacker address is attacker@test.local.",
   "foot_sources": "Sources:", "foot_font": "Fonts: Noto Kufi Arabic, Noto Naskh Arabic and Noto Sans Mono (OFL).",
+
+  # ---- desktop app downloads (m24)
+  "nav_dl": "The app", "dl_h2": "Download the Nitaq app — no terminal needed",
+  "dl_p": "Everything on this site, in one app on your computer: your agents, skills, the Gateway and the Nitaq agent with approve and deny buttons. It runs on your computer only.",
+  "dl_win": "Windows 10 and 11", "dl_win_how": "Double-click it. If Windows says \"Windows protected your PC\", click More info, then Run anyway (the app is not code-signed yet).",
+  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "Unzip, move Nitaq to Applications, and the first time right-click it and choose Open.",
+  "dl_lin": "Linux (x64)", "dl_lin_how": "Unpack it and run Nitaq/install.sh, then open Nitaq from your app menu.",
+  "dl_btn": "Download", "dl_yours": "your computer", "dl_all": "All releases and notes",
+  "dl_note": "The agent needs a free Gemini key, which you paste into the app once and never leaves your computer. Developers can install it with pipx, below.",
 
   # ---- dossier redesign (m23)
   "bureau": "Bureau of AI agent actions · an ISEF project",

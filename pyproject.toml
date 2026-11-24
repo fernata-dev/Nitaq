@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nitaq"
-version = "0.4.0"
+version = "1.0.0"
 description = "Nitaq (نِطاق): discover, scan and opt-in protect AI agent setups (Claude Code, Gemini CLI) against prompt injection, plus the Nitaq research benchmark across Arabic dialects and encodings."
 requires-python = ">=3.11"
 readme = "README.md"

@@ -65,7 +65,7 @@ def test_both_languages_define_the_same_text():
     used = set(re.findall(r"\{\{(\w+)\}\}", tpl))
     computed = {"lang", "dir", "alt_lang", "root", "brand", "pipx", "pipx_short", "repo", "src_owasp", "src_willison",
                 "doc_limits", "doc_install", "doc_integrations", "doc_ai", "doc_readme", "os_tabs", "os_panels", "ledger_static",
-                "ag_t1", "ag_t2"}
+                "ag_t1", "ag_t2", "rel_url", "rel_page"}
     assert used - computed <= set(C.T["en"]), sorted(used - computed - set(C.T["en"]))
 
 

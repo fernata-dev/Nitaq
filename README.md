@@ -4,6 +4,17 @@
 
 **Nitaq reduces the damage an injected instruction can cause; it does not stop a model from following it.**
 
+## ⬇️ Download the desktop app · نزّل التطبيق
+
+No terminal, no Python: the Nitaq control center in its own window, with the Nitaq agent (Gemini) inside.
+
+| Windows 10 / 11 | macOS (Apple Silicon) | Linux (x64) |
+|---|---|---|
+| [**Nitaq-Windows-x64.exe**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Windows-x64.exe) | [**Nitaq-macOS.zip**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-macOS.zip) | [**Nitaq-Linux-x64.tar.gz**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Linux-x64.tar.gz) |
+
+Not code-signed yet: Windows → *More info → Run anyway*; macOS → right-click → *Open* the first time.
+Website: **https://byhamo.bond** · All releases: [releases](https://github.com/fernata-dev/Nitaq/releases).
+
 **Why "Nitaq"?** *Nitaq* (نِطاق) is Arabic for **scope**. Every task an AI agent runs gets a scope:
 the tools, destinations and files it actually needs. Nitaq checks each tool call against that scope
 and decides from the call itself (where it goes, what it reads or carries), never from the language
