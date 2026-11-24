@@ -1,0 +1,115 @@
+{
+ "_note": "Tags could not be pushed from the build session (the session may only push its branch). This file pins every tag to its commit. `python -m nitaq_bench restore-tags` recreates them locally; verify-freeze falls back to the pinned freeze commit if the tag is missing.",
+ "tags": {
+  "data-test-before-lexicon": {
+   "commit": "e3094ae49a5f1990a466d116ba41ebadc5472663",
+   "annotated": false,
+   "message": ""
+  },
+  "freeze-scanner": {
+   "commit": "15e1f2db09bef943b6f6e4467bdde9c03ffa0bd2",
+   "annotated": false,
+   "message": ""
+  },
+  "m1": {
+   "commit": "dbe7e8baaf42a68ee875f8a7a05955431c48e3e0",
+   "annotated": false,
+   "message": ""
+  },
+  "m10": {
+   "commit": "14d4a63989b32c651f28821f839f6c4d0167ea9e",
+   "annotated": false,
+   "message": ""
+  },
+  "m11": {
+   "commit": "7ac54254d0c5e151b49b0efb0690893c7d89fc7b",
+   "annotated": false,
+   "message": ""
+  },
+  "m12": {
+   "commit": "371d05a2304bc8f3cc85a8a221c6bc854ad475f8",
+   "annotated": false,
+   "message": ""
+  },
+  "m13": {
+   "commit": "34e4ae755c17a167389079583f35dbdccf62bac1",
+   "annotated": false,
+   "message": ""
+  },
+  "m14": {
+   "commit": "d9336d80333c5c731003f019599a572d5414e557",
+   "annotated": false,
+   "message": ""
+  },
+  "m15": {
+   "commit": "b8cebe5e59c4dd7265da590f733b6914ef0b722f",
+   "annotated": false,
+   "message": ""
+  },
+  "m16": {
+   "commit": "f93768eac2acd37b9af62fc18d8fca8cce89a230",
+   "annotated": false,
+   "message": ""
+  },
+  "m17": {
+   "commit": "f93768eac2acd37b9af62fc18d8fca8cce89a230",
+   "annotated": false,
+   "message": ""
+  },
+  "m2": {
+   "commit": "15e1f2db09bef943b6f6e4467bdde9c03ffa0bd2",
+   "annotated": false,
+   "message": ""
+  },
+  "m3": {
+   "commit": "c94e1d5e324962aa5c45f84489f4dc1768ede145",
+   "annotated": false,
+   "message": ""
+  },
+  "m4": {
+   "commit": "f368df13f8737df1adaa1d3641a4559fa9c79939",
+   "annotated": false,
+   "message": ""
+  },
+  "m5": {
+   "commit": "42427c42c8e77765b73e0bf7636deecc8d011637",
+   "annotated": false,
+   "message": ""
+  },
+  "m6": {
+   "commit": "be926795e6750891d33e51f6b9dee4c9d5083236",
+   "annotated": false,
+   "message": ""
+  },
+  "m7": {
+   "commit": "6d89b45ef4616d698c733bd3b235c9edb2895d12",
+   "annotated": true,
+   "message": "m7: docs + self-audit complete.\nClean-checkout reproduction: fresh git clone -> pytest passed, verify-freeze OK,\neval --split test digest 9e1eaa7b43488798 IDENTICAL to results/sim_test.json (seed 1337).\nReal-model pilot: NOT RUN (no model reachable in the build environment)."
+  },
+  "m8": {
+   "commit": "1289388a5a5dcebeaf80a7fdbd370af8ba7801f8",
+   "annotated": false,
+   "message": ""
+  },
+  "m9": {
+   "commit": "68e4c37ebdc3194e9390c201918dc89d27f2e0b5",
+   "annotated": false,
+   "message": ""
+  },
+  "m18": {
+   "commit": "7dc9dc6317af9baa4ba2f4b5668b6d9b5342bcf8",
+   "annotated": true,
+   "message": "m18: web app for phones + desktop (PWA), JS engine with Python parity, document readers, redesign"
+  },
+  "m19": {
+   "commit": "67e17bf2c85873707a42352e7d7d98b0b32e5279",
+   "annotated": true,
+   "message": "m19: product website with real-policy demo"
+  },
+  "m20": {
+   "commit": "e8810c49bf7cbef65e184062633c503b0a429063",
+   "annotated": true,
+   "message": "m20: pages work in sandboxed previews and from file://; embedded fonts; width QA"
+  }
+ }
+}

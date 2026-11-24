@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-11-17",
+  "docs_log": "docs/INTEGRATIONS.md",
+  "agents": [
+    {
+      "id": "claude-code",
+      "name": "Claude Code (Anthropic)",
+      "support": "protect",
+      "docs": [
+        "https://code.claude.com/docs/en/hooks",
+        "https://code.claude.com/docs/en/mcp",
+        "https://code.claude.com/docs/en/skills"
+      ],
+      "locations": [
+        {
+          "id": "user-settings",
+          "scope": "user",
+          "kind": "settings",
+          "path": "~/.claude/settings.json"
+        },
+        {
+          "id": "user-state",
+          "scope": "user",
+          "kind": "mcp_config",
+          "format": "claude_json",
+          "path": "~/.claude.json"
+        },
+        {
+          "id": "user-skills",
+          "scope": "user",
+          "kind": "skills_dir",
+          "path": "~/.claude/skills"
+        },
+        {
+          "id": "project-mcp",
+          "scope": "project",
+          "kind": "mcp_config",
+          "format": "mcpServers",
+          "path": "{project}/.mcp.json"
+        },
+        {
+          "id": "project-settings",
+          "scope": "project",
+          "kind": "settings",
+          "path": "{project}/.claude/settings.json"
+        },
+        {
+          "id": "project-settings-local",
+          "scope": "project",
+          "kind": "settings",
+          "path": "{project}/.claude/settings.local.json"
+        },
+        {
+          "id": "project-skills",
+          "scope": "project",
+          "kind": "skills_dir",
+          "path": "{project}/.claude/skills"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "pretooluse-hook",
+          "applies_to": [
+            "user-settings"
+          ],
+          "doc": "https://code.claude.com/docs/en/hooks"
+        },
+        {
+          "id": "posttooluse-hook",
+          "applies_to": [
+            "user-settings"
+          ],
+          "doc": "https://code.claude.com/docs/en/hooks"
+        },
+        {
+          "id": "mcp-stdio-proxy",
+          "applies_to": [
+            "user-state",
+            "project-mcp"
+          ],
+          "doc": "https://code.claude.com/docs/en/mcp"
+        }
+      ],
+      "real_cli_check": {
+        "version": "2.1.326",
+        "date": "2026-11-17",
+        "mcp-stdio-proxy": "verified (claude mcp list)",
+        "pretooluse-hook": "not verified (needs a model run)",
+        "posttooluse-hook": "not verified (needs a model run)"
+      }
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI (Google)",
+      "support": "protect",
+      "docs": [
+        "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/tools/mcp-server.md"
+      ],
+      "locations": [
+        {
+          "id": "user-settings",
+          "scope": "user",
+          "kind": "mcp_config",
+          "format": "mcpServers",
+          "path": "~/.gemini/settings.json"
+        },
+        {
+          "id": "project-settings",
+          "scope": "project",
+          "kind": "mcp_config",
+          "format": "mcpServers",
+          "path": "{project}/.gemini/settings.json"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "mcp-stdio-proxy",
+          "applies_to": [
+            "user-settings",
+            "project-settings"
+          ],
+          "doc": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/docs/tools/mcp-server.md"
+        }
+      ],
+      "real_cli_check": {
+        "version": "0.68.0",
+        "date": "2026-11-17",
+        "mcp-stdio-proxy": "verified (gemini mcp list)"
+      }
+    }
+  ],
+  "not_supported": [
+    {
+      "id": "claude-desktop",
+      "reason": "config path not confirmed by an official page reachable from the build session"
+    },
+    {
+      "id": "cursor",
+      "reason": "official docs (cursor.com) not reachable from the build session"
+    },
+    {
+      "id": "vscode-copilot",
+      "reason": "official docs not reachable from the build session"
+    },
+    {
+      "id": "codex-cli",
+      "reason": "official configuration docs not read"
+    },
+    {
+      "id": "windsurf",
+      "reason": "not checked"
+    }
+  ]
+}

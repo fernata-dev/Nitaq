@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self' https: http://127.0.0.1:* http://localhost:*; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#e4d9b5">
+<title>{{title}}</title>
+<meta name="description" content="{{meta_desc}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{meta_desc}}">
+<meta property="og:image" content="{{root}}assets/og.png">
+<link rel="icon" href="{{root}}app/icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="{{alt_lang}}" href="{{lang_href}}">
+<link rel="preload" href="{{root}}assets/fonts/kufi-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{root}}assets/site.css">
+<script src="{{root}}assets/demo-data.js" defer></script>
+<script src="{{root}}assets/site.js" defer></script>
+<script src="{{root}}assets/connect.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+
+<header class="top" id="nav">
+  <a class="brand" href="#top"><img src="{{root}}app/icon.svg" alt="" width="30" height="30"><b>{{brand}}</b></a>
+  <p class="bureau">{{bureau}}</p>
+  <a class="lang" href="{{lang_href}}" lang="{{alt_lang}}" hreflang="{{alt_lang}}">{{lang_name}}</a>
+  <a class="btn btn-ink sm" href="#install">{{nav_cta}}</a>
+</header>
+
+<div class="file">
+<nav class="rail" aria-label="{{brand}}">
+  <ol class="tabs">
+    <li><a href="#top">{{nav_top}}</a></li>
+    <li><a href="#cases">{{nav_case}}</a></li>
+    <li><a href="#film">{{nav_film}}</a></li>
+    <li><a href="#agent">{{nav_agent}}</a></li>
+    <li><a href="#connect">{{nav_connect}}</a></li>
+    <li><a href="#how">{{nav_how}}</a></li>
+    <li><a href="#install">{{nav_install}}</a></li>
+    <li><a href="#limits">{{nav_limits}}</a></li>
+  </ol>
+  <dl class="rail-data">
+    <dt>{{rail_k1}}</dt><dd>{{rail_v1}}</dd>
+    <dt>{{rail_k2}}</dt><dd class="ltr">{{rail_v2}}</dd>
+    <dt>{{rail_k3}}</dt><dd class="ltr red">{{rail_v3}}</dd>
+  </dl>
+</nav>
+
+<main id="main">
+<!-- ============================================================ hero: the case board -->
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="hero-copy">
+    <h1 id="hero-h"><span>{{hero_h1a}}</span> <span class="h1-b">{{hero_h1b}}</span></h1>
+    <p class="hero-sub">{{hero_sub}}</p>
+    <div class="hero-acts">
+      <a class="btn btn-ink" href="#cases">{{hero_try}}</a>
+      <a class="btn btn-line" href="#film"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>{{hero_film}}</a>
+    </div>
+    <div class="slip" data-copy="{{pipx}}">
+      <code class="ltr"><span class="dollar">$</span> {{pipx_short}}</code>
+      <button class="copy" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button>
+    </div>
+  </div>
+
+  <div class="board" id="board">
+    <p class="sr-only">{{seq_sr}}</p>
+    <div class="frames" role="tablist" aria-label="{{seq_pick}}">
+      <button class="frame" type="button" role="tab" aria-selected="false" data-scn="exfil" id="fr-exfil"><img src="{{root}}assets/frames/mail.png" alt="" width="720" height="540"><span>{{fr_mail}}</span></button>
+      <button class="frame" type="button" role="tab" aria-selected="false" data-scn="ssh" id="fr-ssh"><img src="{{root}}assets/frames/skill.png" alt="" width="720" height="540"><span>{{fr_skill}}</span></button>
+      <button class="frame" type="button" role="tab" aria-selected="false" data-scn="lookalike" id="fr-lookalike"><img src="{{root}}assets/frames/page.png" alt="" width="720" height="540"><span>{{fr_page}}</span></button>
+      <button class="frame" type="button" role="tab" aria-selected="false" data-scn="curl" id="fr-curl"><img src="{{root}}assets/frames/tool.png" alt="" width="720" height="540"><span>{{fr_tool}}</span></button>
+      <a class="frame" href="#agent"><img src="{{root}}assets/frames/agent.png" alt="" width="720" height="540"><span>{{fr_agent}}</span></a>
+      <a class="frame" href="#connect"><img src="{{root}}assets/frames/gateway.png" alt="" width="720" height="540"><span>{{fr_gateway}}</span></a>
+      <svg class="reticle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="3"/><path d="M50 4v30M50 66v30M4 50h30M66 50h30"/></svg>
+    </div>
+    <div class="intercept" id="intercept" aria-live="off">
+      <div class="ic-langs" role="group" aria-label="{{seq_lang}}" id="ic-langs"></div>
+      <p class="ic-k">{{seq_said}}</p>
+      <p class="ic-said" id="ic-said" dir="auto"></p>
+      <p class="ic-k">{{seq_call}}</p>
+      <p class="ic-call ltr" id="ic-call"></p>
+      <div class="stamp" id="ic-stamp" aria-hidden="true"><b>{{seq_no}}</b><small>{{seq_no_sub}}</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ decision log -->
+<section class="log" aria-labelledby="log-h">
+  <h2 id="log-h">{{log_h}}</h2>
+  <p>{{log_p}}</p>
+  <div class="log-rows ltr" id="ledger">{{ledger_static}}</div>
+</section>
+
+<!-- ============================================================ cases (interactive demo, computed decisions) -->
+<section class="sec" id="cases" aria-labelledby="demo-h">
+  <h2 id="demo-h">{{case_h2}}</h2>
+  <p class="lead">{{demo_p}}</p>
+  <div class="demo" id="demo-app" data-lang="{{lang}}">
+    <div class="demo-pick">
+      <p class="label" id="scn-label">{{demo_scn}}</p>
+      <div class="scn-list" role="tablist" aria-labelledby="scn-label" id="scn-list"></div>
+    </div>
+    <div class="demo-stage" role="tabpanel" id="demo-stage" aria-live="polite">
+      <noscript><p>JavaScript is needed for the interactive demo.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ the film -->
+<section class="sec film" id="film" aria-labelledby="film-h">
+  <div class="film-head">
+    <h2 id="film-h">{{film_h2}}</h2>
+    <p class="lead">{{film_p}}</p>
+  </div>
+  <div class="film-body">
+    <figure class="screen">
+      <video id="film-video" controls playsinline preload="none" poster="{{root}}assets/film/poster.jpg" aria-label="{{film_label}}" width="1920" height="1080">
+        <source src="{{root}}assets/film/nitaq-demo.mp4" type="video/mp4">
+      </video>
+      <span class="tc ltr" id="film-tc" aria-hidden="true">00:00:00</span>
+    </figure>
+    <div class="chapters">
+      <h3>{{film_ch}}</h3>
+      <ol id="chapters">
+        <li><button type="button" data-t="0"><span class="ltr">0:00</span>{{ch_1}}</button></li>
+        <li><button type="button" data-t="7"><span class="ltr">0:07</span>{{ch_2}}</button></li>
+        <li><button type="button" data-t="24"><span class="ltr">0:24</span>{{ch_3}}</button></li>
+        <li><button type="button" data-t="54"><span class="ltr">0:54</span>{{ch_4}}</button></li>
+        <li><button type="button" data-t="79"><span class="ltr">1:19</span>{{ch_5}}</button></li>
+        <li><button type="button" data-t="105"><span class="ltr">1:45</span>{{ch_6}}</button></li>
+        <li><button type="button" data-t="179"><span class="ltr">2:59</span>{{ch_7}}</button></li>
+      </ol>
+      <a class="more" href="{{root}}assets/film/nitaq-demo.mp4" download>{{film_dl}}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ agent + skills (real runs) -->
+<section class="sec" id="agent" aria-labelledby="ag-h">
+  <h2 id="ag-h">{{ag_h2}}</h2>
+  <p class="lead">{{ag_p}}</p>
+  <div class="records">
+    <article class="record">
+      <header><span class="tag ltr">skill1.md</span><h3>{{ag1_t}}</h3><p>{{ag1_p}}</p></header>
+      <pre class="aterm" dir="rtl">{{ag_t1}}</pre>
+    </article>
+    <article class="record">
+      <header><span class="tag ltr">skill2.md</span><h3>{{ag2_t}}</h3><p>{{ag2_p}}</p>
+        <div class="stamp stamp-sm on-view" aria-hidden="true"><b>{{seq_no}}</b><small>curl → cdn.bookpages.test</small></div></header>
+      <pre class="aterm" dir="rtl">{{ag_t2}}</pre>
+    </article>
+  </div>
+  <p class="note">{{ag_note}}</p>
+  <div class="ag-run">
+    <pre class="term ltr"><span class="c">$</span> nitaq agent --init ~/nitaq-demo     <span class="d"># {{ag_c1}}</span>
+<span class="c">$</span> cd ~/nitaq-demo
+<span class="c">$</span> nitaq agent</pre>
+    <div class="keys">
+      <h3>{{ag_k_t}}</h3>
+      <dl>
+        <dt class="ltr">/demo 1</dt><dd>{{ag_k1}}</dd>
+        <dt class="ltr">/demo 2</dt><dd>{{ag_k2}}</dd>
+        <dt class="ltr">/scan skills/skill1.md</dt><dd>{{ag_k3}}</dd>
+        <dt class="ltr">/guard off</dt><dd>{{ag_k4}}</dd>
+        <dt class="ltr">/approve</dt><dd>{{ag_k5}}</dd>
+        <dt class="ltr">/stats</dt><dd>{{ag_k6}}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="acts">
+    <a class="btn btn-ink sm" href="{{root}}assets/skills/skill1.md" download>{{ag_dl1}}</a>
+    <a class="btn btn-ink sm" href="{{root}}assets/skills/skill2.md" download>{{ag_dl2}}</a>
+    <a class="btn btn-line sm" href="{{root}}app/index.html">{{ag_try}}</a>
+  </div>
+</section>
+
+<!-- ============================================================ connect: live MCP panel -->
+<section class="sec connect" id="connect" aria-labelledby="cx-h">
+  <h2 id="cx-h">{{cx_h2}}</h2>
+  <p class="lead">{{cx_p}}</p>
+  <ol class="cx-steps">
+    <li>
+      <h3>{{cx_s1}}</h3>
+      <div class="slip" data-copy="nitaq gateway --allow-origin https://SITE" id="cx-cmd">
+        <code class="ltr"><span class="dollar">$</span> <span id="cx-cmd-text">nitaq gateway --allow-origin https://SITE</span></code>
+        <button class="copy" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button>
+      </div>
+      <p class="small" id="cx-origin-note" hidden>{{cx_origin_local}}</p>
+    </li>
+    <li>
+      <h3><label for="cx-url">{{cx_s2}}</label></h3>
+      <div class="cx-form">
+        <input id="cx-url" class="ltr" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="http://127.0.0.1:8787/mcp/…">
+        <button class="btn btn-ink" type="button" id="cx-go" data-busy="{{cx_testing}}">{{cx_test}}</button>
+      </div>
+      <p class="small">{{cx_privacy}}</p>
+      <div class="cx-out" id="cx-out" aria-live="polite" hidden></div>
+      <div class="cx-scan" id="cx-scan" hidden>
+        <h4><label for="cx-text">{{cx_scan_t}}</label></h4>
+        <textarea id="cx-text" rows="4" dir="auto" placeholder="{{cx_scan_ph}}"></textarea>
+        <div class="acts">
+          <button class="btn btn-ink sm" type="button" id="cx-scan-go">{{cx_scan_btn}}</button>
+          <button class="btn btn-line sm" type="button" id="cx-sample" data-src="{{root}}assets/skills/skill1.md">{{cx_sample}}</button>
+        </div>
+        <div class="cx-scan-out" id="cx-scan-out" aria-live="polite"></div>
+      </div>
+    </li>
+    <li>
+      <h3>{{cx_s3}}</h3>
+      <div class="cfgs" id="cx-cfgs">
+        <p class="cfg-k">{{cx_cfg_claude}}</p>
+        <p class="small">{{cx_cfg_tunnel}}</p>
+        <div class="cfg" data-copy="cloudflared tunnel --url http://127.0.0.1:8787"><pre class="term ltr"><span class="c">$</span> cloudflared tunnel --url http://127.0.0.1:8787</pre><button class="copy on-term" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button></div>
+        <div class="cfg" data-copy="https://&lt;tunnel&gt;/mcp/&lt;secret&gt;"><pre class="term ltr" id="cfg-claude">https://&lt;tunnel&gt;/mcp/&lt;secret&gt;</pre><button class="copy on-term" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button></div>
+        <p class="cfg-k">{{cx_cfg_code}}</p>
+        <div class="cfg" data-copy="claude mcp add --transport http nitaq http://127.0.0.1:8787/mcp/&lt;secret&gt;"><pre class="term ltr" id="cfg-code"><span class="c">$</span> claude mcp add --transport http nitaq http://127.0.0.1:8787/mcp/&lt;secret&gt;</pre><button class="copy on-term" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button></div>
+        <p class="cfg-k">{{cx_cfg_gemini}}</p>
+        <div class="cfg" data-copy='{"mcpServers": {"nitaq": {"httpUrl": "http://127.0.0.1:8787/mcp/&lt;secret&gt;"}}}'><pre class="term ltr" id="cfg-gemini">{"mcpServers": {"nitaq": {"httpUrl": "http://127.0.0.1:8787/mcp/&lt;secret&gt;"}}}</pre><button class="copy on-term" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button></div>
+      </div>
+    </li>
+  </ol>
+  <div class="gw">
+    <div>
+      <h3>{{gw_t}}</h3>
+      <p>{{gw_p}}</p>
+      <p class="small">{{gw_honest}}</p>
+    </div>
+    <figure class="exhibit"><a href="{{root}}assets/img/gateway.png"><img src="{{root}}assets/img/gateway-ink.png" alt="{{gw_alt}}" width="1280" height="884" loading="lazy" decoding="async"></a></figure>
+  </div>
+</section>
+
+<!-- ============================================================ how it works -->
+<section class="sec" id="how" aria-labelledby="how-h">
+  <h2 id="how-h">{{how_h2}}</h2>
+  <p class="lead">{{how_p}}</p>
+  <div class="tri">
+    <p class="tri-t">{{tri_t}}</p>
+    <ul>
+      <li class="cut"><b>{{tri_1}}</b><span>{{tri_1d}}</span></li>
+      <li><b>{{tri_2}}</b><span>{{tri_2d}}</span></li>
+      <li class="cut"><b>{{tri_3}}</b><span>{{tri_3d}}</span></li>
+    </ul>
+    <p>{{tri_cut}} <span class="small">{{tri_src}} <a class="src" href="{{src_willison}}" rel="noopener noreferrer">simonwillison.net</a></span></p>
+  </div>
+  <div class="chain" aria-hidden="true">
+    <span>{{door_agent}}<small>Claude Code · Gemini CLI · Gemini agent</small></span>
+    <span class="gate">{{door_label}}<small>proxy · hook · gateway · policy</small></span>
+    <span>{{door_tools}}<small>MCP · Bash · fetch · Read · mail</small></span>
+  </div>
+  <dl class="methods">
+    <div><dt><code class="ltr">nitaq mcp-proxy</code>{{how_1t}}</dt><dd>{{how_1p}}</dd></div>
+    <div><dt><code class="ltr">nitaq hook claude-code</code>{{how_2t}}</dt><dd>{{how_2p}}</dd></div>
+    <div><dt><code class="ltr">~/.nitaq/policy.json</code>{{how_3t}}</dt><dd>{{how_3p}}</dd></div>
+    <div><dt><code class="ltr">nitaq discover</code>{{how_4t}}</dt><dd>{{how_4p}}</dd></div>
+  </dl>
+  <p class="small">{{prob_p}} <a class="src" href="{{src_owasp}}" rel="noopener noreferrer">OWASP LLM01</a></p>
+  <figure class="exhibit wide">
+    <a href="{{root}}assets/img/proxy-taint.png"><img src="{{root}}assets/img/proxy-taint-ink.png" alt="{{proof_alt}}" width="2056" height="844" loading="lazy" decoding="async"></a>
+    <figcaption><b>{{proof_h2}}</b> {{proof_p}}</figcaption>
+  </figure>
+</section>
+
+<!-- ============================================================ install -->
+<section class="sec" id="install" aria-labelledby="inst-h">
+  <h2 id="inst-h">{{inst_h2}}</h2>
+  <div class="install">
+    <div class="os-tabs" role="tablist" aria-label="OS">{{os_tabs}}</div>
+    {{os_panels}}
+    <ol class="steps">
+      <li><b>{{st1_t}}</b><code class="ltr">nitaq</code><span>{{st1_p}}</span></li>
+      <li><b>{{st2_t}}</b><code class="ltr">nitaq protect --dry-run</code><span>{{st2_p}}</span></li>
+      <li><b>{{st3_t}}</b><code class="ltr">nitaq protect --apply</code><span>{{st3_p}}</span></li>
+      <li><b>{{st4_t}}</b><code class="ltr">nitaq unprotect</code><span>{{st4_p}}</span></li>
+    </ol>
+    <p class="small">{{inst_quit}}</p>
+    <p class="small">{{inst_ui}} <code class="ltr">nitaq ui</code></p>
+  </div>
+</section>
+
+<!-- ============================================================ faces -->
+<section class="sec" aria-labelledby="apps-h">
+  <h2 id="apps-h">{{apps_h2}}</h2>
+  <div class="faces">
+    <figure class="pin pin-desk"><a class="orig" href="{{root}}assets/img/desktop-result.png"><img src="{{root}}assets/img/desktop-result-ink.png" alt="{{app_alt_desktop}}" width="1440" height="900" loading="lazy" decoding="async"></a><figcaption><b>{{app1_t}}</b> {{app1_p}}</figcaption></figure>
+    <figure class="pin pin-phone"><a class="orig" href="{{root}}assets/img/phone-result.png"><img src="{{root}}assets/img/phone-result-ink.png" alt="{{app_alt_phone}}" width="585" height="996" loading="lazy" decoding="async"></a><figcaption><b>{{app2_t}}</b> {{app2_p}} <a class="more" href="{{root}}app/index.html">{{app2_cta}}</a></figcaption></figure>
+    <figure class="pin pin-cli"><pre class="term ltr"><span class="c">$</span> nitaq scan ~/.claude/skills --sarif
+<span class="c">$</span> nitaq policy show
+<span class="c">$</span> nitaq agents</pre><figcaption><b>{{app3_t}}</b> {{app3_p}}</figcaption></figure>
+  </div>
+  <h3 class="sub-h">{{sup_h2}}</h3>
+  <div class="tablewrap">
+    <table class="sup">
+      <thead><tr><th scope="col">{{sup_agent}}</th><th scope="col">{{sup_mech}}</th><th scope="col">{{sup_check}}</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Claude Code</th><td>{{sup_cc_m}}</td><td>{{sup_cc_c}}</td></tr>
+        <tr><th scope="row">Gemini CLI</th><td>{{sup_gc_m}}</td><td>{{sup_gc_c}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small"><b>{{sup_no_t}}:</b> {{sup_no}}</p>
+</section>
+
+<!-- ============================================================ limits + research -->
+<section class="sec limits" id="limits" aria-labelledby="lim-h">
+  <h2 id="lim-h">{{lim_h2}}</h2>
+  <blockquote class="quote"><p>{{lim_quote}}</p></blockquote>
+  <ul class="lims"><li>{{lim_1}}</li><li>{{lim_2}}</li><li>{{lim_3}}</li><li>{{lim_4}}</li><li>{{lim_5}}</li></ul>
+  <a class="more" href="{{doc_limits}}" rel="noopener noreferrer">{{lim_more}}</a>
+  <div class="research">
+    <h3>{{res_h2}}</h3>
+    <p>{{res_p}}</p>
+    <p class="small">{{res_note}}</p>
+    <a class="more" href="{{doc_readme}}" rel="noopener noreferrer">{{res_link}}</a>
+  </div>
+</section>
+
+<!-- ============================================================ faq -->
+<section class="sec" aria-labelledby="faq-h">
+  <h2 id="faq-h">{{faq_h2}}</h2>
+  <div class="faq">
+    <details><summary>{{q1}}</summary><p>{{a1}}</p></details>
+    <details><summary>{{q2}}</summary><p>{{a2}}</p></details>
+    <details><summary>{{q3}}</summary><p>{{a3}}</p></details>
+    <details><summary>{{q4}}</summary><p>{{a4}}</p></details>
+    <details><summary>{{q5}}</summary><p>{{a5}}</p></details>
+    <details><summary>{{q6}}</summary><p>{{a6}}</p></details>
+  </div>
+</section>
+
+<!-- ============================================================ close -->
+<section class="final" aria-labelledby="cta-h">
+  <h2 id="cta-h">{{cta_h2}}</h2>
+  <p>{{cta_p}}</p>
+  <div class="slip" data-copy="{{pipx}}">
+    <code class="ltr"><span class="dollar">$</span> {{pipx_short}}</code>
+    <button class="copy" type="button" data-copy-target data-label="{{copy}}" data-done="{{copied}}">{{copy}}</button>
+  </div>
+  <a class="more" href="{{repo}}" rel="noopener noreferrer">{{cta_gh}}</a>
+  <div class="stamp stamp-lg on-view" aria-hidden="true"><b>{{seq_no}}</b><small>{{seq_no_sub}}</small></div>
+</section>
+</main>
+</div>
+
+<footer class="foot">
+  <div class="foot-brand"><img src="{{root}}app/icon.svg" alt="" width="26" height="26"><b>{{brand}}</b><span>MIT</span></div>
+  <nav class="foot-links" aria-label="{{foot_docs}}">
+    <a href="{{doc_install}}" rel="noopener noreferrer">{{foot_install}}</a>
+    <a href="{{doc_limits}}" rel="noopener noreferrer">{{foot_limits}}</a>
+    <a href="{{doc_integrations}}" rel="noopener noreferrer">{{foot_integrations}}</a>
+    <a href="{{doc_ai}}" rel="noopener noreferrer">{{foot_ai}}</a>
+    <a href="{{root}}app/index.html">{{app2_t}}</a>
+  </nav>
+  <p>{{foot_note}}</p>
+  <p>{{foot_sources}} <a href="{{src_owasp}}" rel="noopener noreferrer">OWASP LLM01</a> · <a href="{{src_willison}}" rel="noopener noreferrer">Simon Willison — The lethal trifecta</a> · {{foot_font}}</p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

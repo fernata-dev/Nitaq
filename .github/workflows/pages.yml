@@ -1,0 +1,34 @@
+name: pages
+# Publishes the website (site/) with the phone/desktop app at /app/ to GitHub Pages. Manual only: run it from the
+# Actions tab after enabling Settings -> Pages -> Source: GitHub Actions. It uploads static files;
+# the app itself never sends anything anywhere (see docs/LIMITATIONS.md section 11).
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/export_engine_data.py --check      # rules in the app = rules in Python
+      - run: python tools/web/bundle.py --check                # page scripts = the ES modules
+      - run: python tools/site/build_site.py --check           # site decisions = Nitaq's policy code
+      - run: python tools/site/build_site.py --no-images --out _site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

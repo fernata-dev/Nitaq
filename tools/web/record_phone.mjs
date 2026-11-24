@@ -1,0 +1,34 @@
+// Record a phone-size video of the app: pick an example, read the X-ray, switch views, learn page.
+// usage: node tools/web/record_phone.mjs BASE_URL OUT_DIR   (writes a .webm; convert with ffmpeg)
+import {createRequire} from "node:module";
+const require = createRequire(import.meta.url);
+const {chromium, devices} = require("playwright");
+const [base, out] = process.argv.slice(2);
+const b = await chromium.launch();
+const dev = devices["iPhone 13"];
+const ctx = await b.newContext({...dev, recordVideo: {dir: out, size: dev.viewport}});
+const p = await ctx.newPage();
+const pause = (ms) => p.waitForTimeout(ms);
+await p.goto(base + "#check");
+await pause(2200);
+await p.mouse.wheel(0, 500); await pause(1200);
+await p.getByRole("button", {name: "وورد فيه نص أبيض"}).click();
+await p.waitForSelector(".verdict"); await pause(2600);
+await p.locator(".xray").scrollIntoViewIfNeeded(); await pause(1800);
+await p.getByRole("button", {name: "المخفي", exact: true}).click(); await pause(2200);
+await p.getByRole("button", {name: "اللي إنت شايفه"}).click(); await pause(2000);
+await p.getByRole("button", {name: "الكل", exact: true}).click(); await pause(1200);
+await p.locator(".finding").first().scrollIntoViewIfNeeded(); await pause(2200);
+await p.locator(".todo").scrollIntoViewIfNeeded(); await pause(2200);
+await p.getByRole("button", {name: "افحص حاجة تانية"}).click(); await pause(1200);
+await p.getByRole("button", {name: "إيميل مشبوه"}).click();
+await p.waitForSelector(".verdict"); await pause(2600);
+await p.mouse.wheel(0, 700); await pause(1800);
+await p.getByRole("link", {name: "اتعلّم"}).last().click(); await pause(2400);
+await p.mouse.wheel(0, 650); await pause(2600);
+await p.getByRole("link", {name: "جهازي"}).last().click(); await pause(2200);
+await p.getByRole("button", {name: "EN"}).click(); await pause(1200);
+await p.getByRole("link", {name: "Check"}).last().click(); await pause(2000);
+await ctx.close();
+await b.close();
+console.log("recorded");

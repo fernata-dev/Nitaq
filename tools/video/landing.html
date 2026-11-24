@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نِطاق — فيديو العرض</title>
+<link rel="stylesheet" href="site/app/fonts.css">
+<style>
+:root{--bg:#0C3B3C;--deep:#072829;--acc:#5ED3B4;--gold:#F5B544;--ink:#fff;--muted:#a9cfc8;--line:rgba(94,211,180,.25)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 "Plex Arabic",system-ui,sans-serif}
+body{background:radial-gradient(900px 500px at 80% -10%,rgba(94,211,180,.16),transparent 60%),var(--bg);min-height:100vh}
+main{max-width:1060px;margin:0 auto;padding:28px 18px 56px}
+header{display:flex;align-items:center;gap:14px}
+header svg{width:52px;height:52px;flex:none}
+header h1{margin:0;font-size:34px;line-height:1.1}
+header p{margin:2px 0 0;color:var(--muted);font-size:16px}
+.tag{margin:26px 0 8px;font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.3}
+.tag b{color:var(--acc)}
+.lead{margin:0 0 22px;color:var(--muted);max-width:760px}
+.video{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 24px 70px rgba(0,0,0,.4)}
+.video video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 8px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:17px}
+.btn.primary{background:var(--acc);color:var(--deep)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h2{font-size:24px;margin:40px 0 14px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ol.steps li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(7,40,41,.45)}
+ol.steps .n{flex:none;width:32px;height:32px;border-radius:9px;background:var(--acc);color:var(--deep);font-weight:700;display:grid;place-items:center}
+ol.steps b{display:block}
+ol.steps span{color:var(--muted);font-size:15.5px}
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:16px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right}
+th{color:var(--muted);font-weight:600}
+td.num{direction:ltr;text-align:left;font-variant-numeric:tabular-nums;font-weight:700}
+tr.us td{color:var(--acc)}
+.note{color:var(--muted);font-size:15px;margin-top:10px}
+.honest{margin-top:36px;padding:18px 20px;border:1px solid var(--line);background:rgba(7,40,41,.5);border-radius:12px;font-weight:600;color:var(--acc)}
+footer{margin-top:28px;color:var(--muted);font-size:14px}
+@media (max-width:560px){header h1{font-size:28px}.btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a70"/><stop offset="1" stop-color="#0a4741"/></linearGradient></defs>
+      <rect width="64" height="64" rx="15" fill="url(#g)" stroke="rgba(94,211,180,.5)"/><g fill="none" stroke="#f6f1e7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 25V16a2 2 0 0 1 2-2h9"/><path d="M39 14h9a2 2 0 0 1 2 2v9"/><path d="M50 39v9a2 2 0 0 1-2 2h-9"/><path d="M25 50h-9a2 2 0 0 1-2-2v-9"/></g><circle cx="32" cy="32" r="7.5" fill="#f5b544"/></svg>
+    <div><h1>نِطاق</h1><p>مشروع ISEF · برمجيات وأمن سيبراني</p></div>
+  </header>
+
+  <p class="tag">أي فعل خارج النطاق.. <b>مرفوض</b></p>
+  <p class="lead">نِطاق بيحمي وكلاء الذكاء الاصطناعي من حقن الأوامر غير المباشر — بالعامية المصرية والفرانكو والنصوص المشفّرة. مش بيحاول يفهم لغة الأمر: بيبص على الفعل نفسه، الداتا رايحة فين والملف اللي بيتقري.</p>
+
+  <div class="video"><video controls playsinline preload="metadata" poster="poster.jpg" src="Nitaq_Full_Demo.mp4"></video></div>
+
+  <div class="cta">
+    <a class="btn primary" href="site/app/index.html">جرّب التطبيق دلوقتي</a>
+    <a class="btn ghost" href="site/index.html">موقع المشروع</a>
+  </div>
+
+  <h2>اللي في الفيديو (تسجيل حقيقي)</h2>
+  <ol class="steps">
+    <li><span class="n">١</span><div><b>الاختبارات</b><span>261 اختبار تلقائي على الكود كله — كلهم نجحوا.</span></div></li>
+    <li><span class="n">٢</span><div><b>فحص ملفات المهارات</b><span>ملف سليم بيعدّي (exit code 0)، وملف مسموم فيه أوامر مدسوسة بالمصري والفرانكو وBase64 بيترفض (14 خطر عالي، exit code 3).</span></div></li>
+    <li><span class="n">٣</span><div><b>نفس الهجوم بخمس أشكال</b><span>مصري، فرانكو، Base64، حروف خفية، وصياغة تانية: فلتر النصوص لقط 4 من 5، ونِطاق رفض الفعل 5 من 5.</span></div></li>
+    <li><span class="n">٤</span><div><b>المحاكاة: 1224 هجمة (seed 1337)</b><span>وكيل وهمي بيطيع أي أمر — أسوأ حالة، مش موديل حقيقي.</span></div></li>
+    <li><span class="n">٥</span><div><b>التطبيق</b><span>إيميل فيه أمر مخفي، ملف Word فيه نص أبيض، حروف خفية، وحماية الجهاز — الفحص كله على جهازك.</span></div></li>
+  </ol>
+
+  <h2>جديد: نِطاق مع أي AI — في الترمنال وعلى السحابة</h2>
+  <ol class="steps">
+    <li><span class="n">٦</span><div><b>وكيل نِطاق (nitaq agent)</b><span>وكيل خفيف في الترمنال زي Codex، شغال بـ Gemini. ملف skill1.md بالفرانكو جواه أمر مدسوس بيسرق بياناتك: نِطاق كشفه وشاله قبل ما يوصل للموديل. ملف skill2.md خلّى الموديل يشغّل curl بيرفع ملف .env: نِطاق وقف الأمر وخفّف صلاحيات الوكيل لحد ما توافق.</span></div></li>
+    <li><span class="n">٧</span><div><b>نِطاق Gateway (سيرفر MCP)</b><span>بتوصّل بيه Claude أو أي AI على السحابة بإيميلك وملفاتك. الإيميل اللي فيه أمر مخفي بيتنضّف قبل ما الـ AI يشوفه، وأي إرسال لبرّه بيستنى موافقتك من لوحة على جهازك.</span></div></li>
+  </ol>
+  <div class="cta">
+    <a class="btn primary" href="site/index.html#agent">شوف التسجيل الحقيقي</a>
+    <a class="btn ghost" href="site/assets/skills/skill1.md">skill1.md</a>
+    <a class="btn ghost" href="site/assets/skills/skill2.md">skill2.md</a>
+  </div>
+
+  <h2>نتيجة المحاكاة: نسبة نجاح الهجوم (الأقل أحسن)</h2>
+  <table>
+    <thead><tr><th>الدفاع</th><th>نجاح الهجوم</th></tr></thead>
+    <tbody>
+      <tr><td>بدون حماية (D0)</td><td class="num">100.0% (1224/1224)</td></tr>
+      <tr><td>فلتر الكلمات (D1)</td><td class="num">100.0% (1224/1224)</td></tr>
+      <tr><td>فلتر التطبيع (D2)</td><td class="num">94.1% (1152/1224)</td></tr>
+      <tr class="us"><td>نِطاق — ضابط الصلاحيات (D5)</td><td class="num">33.3% (408/1224)</td></tr>
+    </tbody>
+  </table>
+  <p class="note">الـ33.3% الباقية هجمات جوه المسموح (زي معلومة غلط في رد عادي)، ونِطاق مش مصمم يمنعها. التكلفة: 5 من 53 طلب سليم اتمنعوا (الفايدة 90.6%). الأرقام طالعة من الكود كما هي.</p>
+
+  <p class="honest">نِطاق بيقلّل الضرر اللي ممكن تعمله تعليمة محقونة؛ مش بيمنع الموديل إنه يتبعها.</p>
+  <footer>كل الهجمات في الفيديو تجريبية وآمنة: العنوان الوحيد للمهاجم attacker@test.local ومفيش أي إرسال حقيقي.</footer>
+</main>
+</body>
+</html>

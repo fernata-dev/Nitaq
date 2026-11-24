@@ -1,0 +1,39 @@
+[
+  {
+    "file": "src/nitaq_bench/defenses/d4_cpt.py",
+    "sha256": "f2aadf5c872cf3a0cff4f1a97a337d64af97141cb4270553be4958276bc376ca",
+    "date": "2026-11-17",
+    "reason": "Safety fix (HARD RULE 2): tiktoken.get_encoding() tried to download its vocabulary from the internet. D4 now only loads a vocabulary that is already cached locally and never downloads it.",
+    "affects_results": false,
+    "evidence_no_effect": "D4 was reported as skipped in results/sim_dev.json and results/sim_test.json both before and after this change (tokenizer unavailable in the build environment).",
+    "changelog": "CHANGELOG.md, section 'Post-freeze scanner changes'"
+  },
+  {
+    "kind": "rename",
+    "file": "src/nitaq_bench/ (all 7 frozen files: package name only)",
+    "sha256": {
+      "src/nitaq_bench/attacks/encoders.py": "d3fb4b9caaa4c192d74b226ae8c039c645fbbbd782fc0113c4e4e3cc5028a66c",
+      "src/nitaq_bench/defenses/d1_keyword.py": "8024e749148b970c903661a1a0ac9e4cf42dc21e45a56ab230c2ecc865fa6499",
+      "src/nitaq_bench/defenses/d2_normalizer.py": "4a914462ad7f2201184047825f2b446b9f207e2e3af13e1774c4bd1ced7bd851",
+      "src/nitaq_bench/defenses/d2_lexicon.py": "115f68939e16570f085d6e50e818e159a99cbb3049bffa0e00d7e2f6d477413c",
+      "src/nitaq_bench/defenses/d2_scanner.py": "7f548883fbe6974ffd57bfb3555ea2fba74c36baaf648256b15e3e2ab45860da",
+      "src/nitaq_bench/defenses/d3_llm_judge.py": "5aeb2c3c0f7ccb1f2324b7ca111a85c393d8bad50551e22787359ce572710515",
+      "src/nitaq_bench/defenses/d4_cpt.py": "93418bf493ea2133d687cef93b40cbc2ac7269280770fb8cdb59d135d5d9522f"
+    },
+    "date": "2026-11-23",
+    "names_now_to_freeze": [
+      [
+        "nitaq_bench",
+        "hares"
+      ],
+      [
+        "Nitaq",
+        "Hares"
+      ]
+    ],
+    "reason": "Rename only (m21): the project now has one name, Nitaq, and the research package is nitaq_bench. Import lines and the product name in comments/messages changed; no rule, pattern, threshold or logic changed.",
+    "affects_results": false,
+    "evidence_no_effect": "verify-freeze maps the names back with names_now_to_freeze and requires every frozen file to be byte-identical to the freeze tag (d4_cpt.py: to its earlier recorded change). eval --split dev/test re-run after the rename gives the same counts as before (sim_dev/sim_test digests compared in CHANGELOG.md).",
+    "changelog": "CHANGELOG.md, section 'Post-freeze scanner changes'"
+  }
+]

@@ -1,0 +1,8 @@
+# Keep LF everywhere: the scanner freeze compares files byte-for-byte with the
+# freeze tag, and results digests must not depend on the OS that checked out the repo.
+* text=auto eol=lf
+*.png binary
+*.mp4 binary
+*.webm binary
+# sample e-mail keeps its CRLF line endings (as sent by mail servers)
+src/nitaq/web/samples/*.eml -text

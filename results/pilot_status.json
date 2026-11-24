@@ -1,0 +1,31 @@
+{
+  "status": "not run",
+  "date": "2026-11-17T08:38:46Z",
+  "agent_kind": "ollama",
+  "endpoint": "http://127.0.0.1:11434",
+  "reason": "Ollama not reachable: URLError: <urlopen error [Errno 111] Connection refused>",
+  "plan": {
+    "split": "test",
+    "langs": [
+      "en",
+      "arz",
+      "arabizi"
+    ],
+    "encodings": [
+      "none",
+      "b64",
+      "zwsp"
+    ],
+    "sources": [
+      "email",
+      "webpage"
+    ],
+    "defenses": [
+      "D0",
+      "D1",
+      "D2",
+      "D5"
+    ],
+    "repeats": 3
+  }
+}

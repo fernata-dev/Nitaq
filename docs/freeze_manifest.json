@@ -1,0 +1,14 @@
+{
+  "about": "sha256 of every frozen scanner file exactly as it was at git tag freeze-scanner (content in the names of that time). Used by verify-freeze when the git history with the tag is not in the clone; the full history is kept in the project's original archive.",
+  "tag": "freeze-scanner",
+  "tag_commit": "15e1f2db09bef943b6f6e4467bdde9c03ffa0bd2",
+  "files": {
+    "src/nitaq_bench/attacks/encoders.py": "d3fb4b9caaa4c192d74b226ae8c039c645fbbbd782fc0113c4e4e3cc5028a66c",
+    "src/nitaq_bench/defenses/d1_keyword.py": "37cd0fe94288161a3ffa303383f23777562c3d6bda98c390b5f8fead6ae2701a",
+    "src/nitaq_bench/defenses/d2_normalizer.py": "4a914462ad7f2201184047825f2b446b9f207e2e3af13e1774c4bd1ced7bd851",
+    "src/nitaq_bench/defenses/d2_lexicon.py": "115f68939e16570f085d6e50e818e159a99cbb3049bffa0e00d7e2f6d477413c",
+    "src/nitaq_bench/defenses/d2_scanner.py": "672f3e25a570202ba81cac52f77d89d4c05f18fc51d4a00e440366b36c1d82a4",
+    "src/nitaq_bench/defenses/d3_llm_judge.py": "3067a674a21152eab0b2cf991a0c187bc96392e388957b5c1d8f5d9b6e665412",
+    "src/nitaq_bench/defenses/d4_cpt.py": "a5c6bd62136930e263ccfad333e0a5e17995d202c085c8e532886e36dc3f9ae9"
+  }
+}

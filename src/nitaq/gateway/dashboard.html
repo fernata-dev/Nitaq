@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>نِطاق Gateway — لوحة الموافقات</title>
+<style>
+:root{--bg:#0C3B3C;--deep:#072829;--card:#0f4647;--acc:#5ED3B4;--gold:#F5B544;--red:#FF7B72;--ink:#fff;--muted:#a9cfc8;--line:rgba(94,211,180,.22)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "IBM Plex Sans Arabic","Plex Arabic","Segoe UI",Tahoma,system-ui,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:22px 18px 48px}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header svg{width:46px;height:46px;flex:none}
+header h1{margin:0;font-size:26px;line-height:1.2}
+header p{margin:0;color:var(--muted);font-size:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.chip b{color:var(--ink);font-weight:600}
+.grow{flex:1}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:20px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+section{background:rgba(7,40,41,.55);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+section h2{margin:0 0 12px;font-size:17px;display:flex;align-items:center;gap:8px}
+section h2 .n{background:var(--gold);color:var(--deep);border-radius:8px;padding:0 8px;font-size:14px}
+.mode{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.badge{font-weight:700;padding:6px 14px;border-radius:10px}
+.badge.ok{background:rgba(94,211,180,.16);color:var(--acc)}
+.badge.low{background:rgba(245,181,68,.16);color:var(--gold)}
+.perms{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media (max-width:560px){.perms{grid-template-columns:repeat(2,1fr)}}
+.perm{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;color:var(--muted)}
+.perm b{display:block;color:var(--ink);font-size:14px}
+.perm.bad b{color:var(--red)}.perm.mid b{color:var(--gold)}
+.why{color:var(--muted);font-size:13px;margin-top:8px}
+button{font:inherit;font-weight:700;border-radius:10px;padding:8px 16px;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink);min-height:40px}
+button.yes{background:var(--acc);color:var(--deep);border-color:var(--acc)}
+button.no{border-color:rgba(255,123,114,.6);color:var(--red)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.req{border:1px solid rgba(245,181,68,.45);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:rgba(245,181,68,.06)}
+.req.block{border-color:rgba(255,123,114,.55);background:rgba(255,123,114,.07)}
+.req .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.req .id{font-weight:700;color:var(--gold)}
+.req.block .id{color:var(--red)}
+.req code{display:block;direction:ltr;text-align:left;background:var(--deep);border-radius:8px;padding:8px 10px;margin:8px 0;font:13px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.req ul{margin:4px 0 10px;padding-inline-start:20px;color:var(--muted);font-size:14px}
+.req .act{display:flex;gap:8px}
+.empty{color:var(--muted);font-size:14px}
+ol.log{list-style:none;margin:0;padding:0;max-height:520px;overflow:auto}
+ol.log li{display:grid;grid-template-columns:64px 22px 1fr;gap:6px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+ol.log time{color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
+ol.log .t{word-break:break-word}
+ol.log .s{color:var(--muted);font-size:12.5px;display:block}
+.k-injection .i,.k-blocked .i{color:var(--red)}.k-held .i,.k-restricted .i{color:var(--gold)}.k-allow .i,.k-approved .i,.k-approved-run .i,.k-restored .i{color:var(--acc)}
+.mail{border-bottom:1px solid var(--line);padding:8px 0;font-size:14px}
+.mail b{direction:ltr;display:inline-block}
+footer{margin-top:18px;display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.flash{animation:fl 1.2s ease-out}
+@keyframes fl{from{box-shadow:0 0 0 3px rgba(255,123,114,.7)}to{box-shadow:0 0 0 0 rgba(255,123,114,0)}}
+@media (prefers-reduced-motion:reduce){.flash{animation:none}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#0f5e57" stroke="rgba(94,211,180,.5)"/><g fill="none" stroke="#f6f1e7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 25V16a2 2 0 0 1 2-2h9"/><path d="M39 14h9a2 2 0 0 1 2 2v9"/><path d="M50 39v9a2 2 0 0 1-2 2h-9"/><path d="M25 50h-9a2 2 0 0 1-2-2v-9"/></g><circle cx="32" cy="32" r="7.5" fill="#f5b544"/></svg>
+  <div><h1>نِطاق Gateway</h1><p>بين الـ AI (حتى لو على السحابة) وبين إيميلك وملفاتك</p></div>
+  <span class="grow"></span>
+  <span class="chip">الخلفية: <b id="backend">…</b></span>
+  <span class="chip">متصل: <b id="clients">—</b></span>
+</header>
+
+<div class="grid">
+  <div>
+    <section aria-labelledby="h-mode">
+      <h2 id="h-mode">صلاحيات الوكيل</h2>
+      <div class="mode"><span id="badge" class="badge ok">…</span><span class="grow"></span>
+        <button id="restore" class="yes" type="button">رجّع الصلاحيات</button>
+        <button id="restrict" type="button">خفّفها دلوقتي</button></div>
+      <div class="perms" id="perms"></div>
+      <div class="why" id="why"></div>
+    </section>
+    <section aria-labelledby="h-req" style="margin-top:16px" id="reqbox">
+      <h2 id="h-req">مستني موافقتك <span class="n" id="npend">0</span></h2>
+      <div id="reqs"><p class="empty">مفيش أفعال مستنية.</p></div>
+    </section>
+    <section aria-labelledby="h-out" style="margin-top:16px">
+      <h2 id="h-out">صندوق الصادر (تجريبي — مفيش حاجة بتخرج من الجهاز)</h2>
+      <div id="outbox"><p class="empty">لسه مفيش رسايل.</p></div>
+    </section>
+  </div>
+  <section aria-labelledby="h-log">
+    <h2 id="h-log">قرارات نِطاق لحظة بلحظة</h2>
+    <ol class="log" id="log"></ol>
+  </section>
+</div>
+<footer><button id="reset" type="button">ابدأ التجربة من الأول</button><span>اللوحة دي على جهازك بس، ورابطها فيه مفتاح سري — متشاركوش.</span></footer>
+</main>
+<script>
+const base = location.pathname.replace(/\/$/, "");
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const PERM = {commands:"الأوامر", network:"الشبكة", private:"ملفاتك الخاصة", write:"الكتابة"};
+const VAL = {"safe-auto":"الآمنة تلقائي", approval:"بموافقتك", blocked:"مقفولة", allowed:"مسموحة", workspace:"جوه المجلد", off:"مقفول"};
+const KIND = {injection:["🛡","اتكشفت تعليمات مدسوسة"], blocked:["✖","اتمنع"], held:["▲","مستني موافقتك"], allow:["✔","مسموح"],
+  approved:["✔","وافقت"], "approved-run":["✔","اتنفّذ بعد موافقتك"], denied:["✖","رفضت"], restricted:["↓","الصلاحيات اتخففت"],
+  restored:["↑","الصلاحيات رجعت"], read:["◇","قراءة"], client:["⇄","اتصال"], scan:["◇","فحص"], check:["?","سؤال قبل فعل"],
+  "hidden-tool":["✖","أداة متخبّي فيها أوامر اتشالت"]};
+let lastLog = 0;
+async function post(act, body) {
+  await fetch(base + "/api/" + act, {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify(body || {})});
+  tick();
+}
+function render(st) {
+  $("backend").textContent = st.backend === "demo" ? "إيميل ودرايف تجريبي" : "سيرفر MCP حقيقي";
+  $("clients").textContent = st.clients.length ? st.clients[st.clients.length - 1] : "—";
+  const low = st.mode === "restricted";
+  $("badge").className = "badge " + (low ? "low" : "ok");
+  $("badge").textContent = low ? "متخففة ↓ لحد ما توافق" : "عادية";
+  $("why").innerHTML = low ? "السبب: <bdi>" + esc(st.why) + "</bdi>" : "";
+  $("perms").innerHTML = Object.entries(st.permissions).map(([k, v]) =>
+    `<div class="perm ${v === "blocked" ? "bad" : v === "approval" ? "mid" : ""}">${PERM[k]}<b>${VAL[v] || v}</b></div>`).join("");
+  $("npend").textContent = st.pending.length;
+  $("reqs").innerHTML = st.pending.length ? st.pending.map((r) => `
+    <div class="req ${r.level === "block" ? "block" : ""}"><div class="top"><span class="id">طلب ${esc(r.id)}</span>
+    <span>${r.level === "block" ? "نِطاق منعه — خارج النطاق" : "محتاج موافقتك"}</span><span class="grow"></span><span class="chip">${esc(r.time)}</span></div>
+    <code>${esc(r.summary)}</code><ul>${r.reasons.map((x) => `<li><bdi>${esc(x)}</bdi></li>`).join("")}</ul>
+    <div class="act"><button class="yes" data-a="approve" data-id="${esc(r.id)}">وافق مرة واحدة</button>
+    <button class="no" data-a="deny" data-id="${esc(r.id)}">ارفض</button></div></div>`).join("")
+    : '<p class="empty">مفيش أفعال مستنية.</p>';
+  $("outbox").innerHTML = st.outbox.length ? st.outbox.slice().reverse().map((m) =>
+    `<div class="mail">${esc(m.time)} · إلى <b>${esc(m.to)}</b> · ${esc(m.subject)}</div>`).join("") : '<p class="empty">لسه مفيش رسايل.</p>';
+  const evs = st.events.slice().reverse();
+  $("log").innerHTML = evs.map((e) => {
+    const [i, t] = KIND[e.kind] || ["•", e.kind];
+    const detail = e.what || e.source || e.why || "";
+    const sub = e.signals ? "إشارات: " + e.signals.join(", ") : e.rules ? e.rules.join(", ") : "";
+    return `<li class="k-${esc(e.kind)}"><time>${esc(e.time)}</time><span class="i">${i}</span><span class="t">${t}${detail ? " — <bdi>" + esc(detail) + "</bdi>" : ""}${sub ? `<span class="s"><bdi>${esc(sub)}</bdi></span>` : ""}</span></li>`;
+  }).join("");
+  if (st.events.length > lastLog && evs[0] && ["injection", "blocked", "held"].includes(evs[0].kind)) {
+    $("reqbox").classList.remove("flash"); void $("reqbox").offsetWidth; $("reqbox").classList.add("flash");
+  }
+  lastLog = st.events.length;
+}
+async function tick() {
+  try { render(await (await fetch(base + "/api/state", {cache:"no-store"})).json()); } catch (e) {}
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-a]");
+  if (b) post(b.dataset.a, {id: b.dataset.id});
+});
+$("restore").onclick = () => post("restore");
+$("restrict").onclick = () => post("restrict");
+$("reset").onclick = () => post("reset");
+tick(); setInterval(tick, 1200);
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nitaq"
+version = "0.4.0"
+description = "Nitaq (نِطاق): discover, scan and opt-in protect AI agent setups (Claude Code, Gemini CLI) against prompt injection, plus the Nitaq research benchmark across Arabic dialects and encodings."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+tokenizer = ["tiktoken"]
+
+[project.scripts]
+nitaq = "nitaq.cli:main"
+nitaq-bench = "nitaq_bench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nitaq_bench = ["demo/static/*"]
+nitaq = ["_data/*.json", "web/*.html", "web/*.css", "web/*.svg", "web/*.js", "web/*.webmanifest", "web/app/*.js",
+          "web/engine/*.js", "web/fonts/*", "web/icons/*.png", "web/samples/*.js",
+          "agent/demo/*.json", "agent/demo/*.txt", "agent/demo/env.example", "agent/demo/skills/*.md", "gateway/*.html",
+          "ui/console/*.html", "ui/console/*.css", "ui/console/*.js", "ui/console/fonts/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

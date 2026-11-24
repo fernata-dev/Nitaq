@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0f0f0f">
+<title>نِطاق · مركز التحكم</title>
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="console.css">
+<script src="console.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <span class="brand"><img src="../icon.svg" alt="" width="28" height="28"><b data-t="brand">نِطاق</b></span>
+  <span class="title" data-t="title">مركز التحكم · الجهاز ده</span>
+  <span class="device ltr" id="device"></span>
+  <span class="grow"></span>
+  <button class="tbtn" type="button" id="refresh" data-t="refresh">حدّث</button>
+  <a class="tbtn" href="../#" id="classic" data-t="classic">افحص ملف</a>
+  <button class="tbtn" type="button" id="lang">English</button>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="Nitaq">
+    <button type="button" data-view="ov" data-t="nav_ov">الملف</button>
+    <button type="button" data-view="agents" data-t="nav_agents">المساعدات</button>
+    <button type="button" data-view="skills" data-t="nav_skills">المهارات</button>
+    <button type="button" data-view="mcp" data-t="nav_mcp">سيرفرات MCP</button>
+    <button type="button" data-view="gw" data-t="nav_gw">الـ Gateway</button>
+    <button type="button" data-view="agent" data-t="nav_agent">وكيل نِطاق</button>
+    <button type="button" data-view="policy" data-t="nav_policy">السياسة</button>
+    <button type="button" data-view="log" data-t="nav_log">السجل</button>
+    <p class="rail-foot ltr" id="ver"></p>
+  </nav>
+  <main id="main" tabindex="-1">
+    <p class="loading" id="loading" data-t="loading">بيقرا جهازك…</p>
+    <section class="view" id="v-ov" hidden></section>
+    <section class="view" id="v-agents" hidden></section>
+    <section class="view" id="v-skills" hidden></section>
+    <section class="view" id="v-mcp" hidden></section>
+    <section class="view" id="v-gw" hidden></section>
+    <section class="view" id="v-agent" hidden></section>
+    <section class="view" id="v-policy" hidden></section>
+    <section class="view" id="v-log" hidden></section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
