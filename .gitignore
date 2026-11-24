@@ -14,3 +14,4 @@ results/scratch/
 *.tar.gz
 demo/build/
 demo/motion/broll/
+demo/voiceover/audio/piper/
