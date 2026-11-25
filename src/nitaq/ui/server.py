@@ -55,6 +55,16 @@ CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'
        "worker-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'")
 
 
+def _short(path: Path, home: Path) -> str:
+    """A path for the page: ~/… under the inspected home or the real home, never a full user path."""
+    for base in (home, Path.home()):
+        try:
+            return "~/" + Path(path).resolve().relative_to(Path(base).resolve()).as_posix()
+        except ValueError:
+            continue
+    return Path(path).name
+
+
 class Refused(Exception):
     def __init__(self, code: int, msg: str):
         super().__init__(msg)
@@ -364,6 +374,13 @@ class App:
         pidf.unlink(missing_ok=True)
         return {"stopped": pid}
 
+    def shutdown_children(self) -> None:
+        """Stop the Gateway process this app started (called when the app closes)."""
+        try:
+            self.gateway_stop({})
+        except Refused:
+            pass
+
     def gateway_act(self, body: dict) -> dict:
         action = str(body.get("action", ""))
         if action not in ("approve", "deny", "restore", "restrict", "reset"):
@@ -390,6 +407,24 @@ class App:
             except LookupError as exc:
                 raise Refused(400, str(exc)) from exc
         return self._agent.since(0)
+
+    def settings(self) -> dict:
+        from nitaq.agent.gemini import find_key, key_file
+        from nitaq.redact import display_path
+        key = find_key(self.home / "nitaq-demo")
+        return {"version": __version__, "key_set": bool(key), "key_hint": ("…" + key[-4:]) if key else "",
+                "key_file": _short(key_file(), self.home), "data_dir": "~/.nitaq", "demo_dir": "~/nitaq-demo",
+                "repo": "https://github.com/fernata-dev/Nitaq", "site": "https://byhamo.bond",
+                "releases": "https://github.com/fernata-dev/Nitaq/releases/latest"}
+
+    def agent_key_remove(self, body: dict) -> dict:
+        from nitaq.agent.gemini import key_file
+        try:
+            key_file().unlink()
+        except FileNotFoundError:
+            pass
+        self._agent = None
+        return {"removed": True}
 
     def agent_key(self, body: dict) -> dict:
         """Save the Gemini API key from the window (same private file as `nitaq agent --set-key`)."""
@@ -423,14 +458,14 @@ class App:
 
 
 ROUTES_GET = {"/api/status": "status", "/api/activity": "activity", "/api/console": "console", "/api/gateway": "gateway",
-              "/api/ping": "ping"}
+              "/api/ping": "ping", "/api/settings": "settings"}
 ROUTES_POST = {"/api/scan": "scan", "/api/protect/plan": "plan", "/api/protect/apply": "apply",
                "/api/restore/plan": "restore_plan", "/api/restore/apply": "restore", "/api/policy": "save_policy",
                "/api/policy/check": "check", "/api/gateway/start": "gateway_start", "/api/gateway/stop": "gateway_stop",
                "/api/gateway/act": "gateway_act", "/api/demo/init": "demo_init",
                "/api/console/refresh": "console_refresh", "/api/agent/start": "agent_start", "/api/agent/send": "agent_send",
                "/api/agent/events": "agent_events", "/api/agent/answer": "agent_answer",
-               "/api/agent/key": "agent_key"}
+               "/api/agent/key": "agent_key", "/api/agent/key/remove": "agent_key_remove"}
 
 
 def make_handler(app: App, port_ref: dict):

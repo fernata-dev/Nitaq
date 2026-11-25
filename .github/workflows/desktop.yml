@@ -61,12 +61,33 @@ jobs:
       - name: Package
         shell: bash
         run: |
-          mkdir out
+          mkdir -p out
+          VERSION=$(python -c "import nitaq; print(nitaq.__version__)")
           case "$RUNNER_OS" in
-            Windows) cp dist/Nitaq.exe out/Nitaq-Windows-x64.exe ;;
-            macOS)   ditto -c -k --sequesterRsrc --keepParent dist/Nitaq.app out/Nitaq-macOS.zip ;;
-            Linux)   mkdir -p pkg/Nitaq && cp dist/nitaq-app packaging/linux/install.sh pkg/Nitaq/ && cp packaging/icons/nitaq-512.png pkg/Nitaq/nitaq.png && tar -C pkg -czf out/Nitaq-Linux-x64.tar.gz Nitaq ;;
+            Windows)
+              cp dist/Nitaq.exe out/Nitaq-Windows-x64.exe
+              choco install innosetup -y --no-progress >/dev/null
+              MSYS_NO_PATHCONV=1 "/c/Program Files (x86)/Inno Setup 6/ISCC.exe" "/DAppVersion=$VERSION" "packaging\\windows\\nitaq.iss"
+              ;;
+            macOS)
+              ditto -c -k --sequesterRsrc --keepParent dist/Nitaq.app out/Nitaq-macOS.zip
+              mkdir dmg && cp -R dist/Nitaq.app dmg/ && ln -s /Applications dmg/Applications
+              hdiutil create -volname "Nitaq" -srcfolder dmg -ov -format UDZO out/Nitaq-macOS.dmg
+              ;;
+            Linux)
+              mkdir -p pkg/Nitaq && cp dist/nitaq-app packaging/linux/install.sh pkg/Nitaq/ && cp packaging/icons/nitaq-512.png pkg/Nitaq/nitaq.png
+              tar -C pkg -czf out/Nitaq-Linux-x64.tar.gz Nitaq
+              root=deb
+              mkdir -p $root/DEBIAN $root/opt/nitaq $root/usr/bin $root/usr/share/applications $root/usr/share/icons/hicolor/512x512/apps
+              cp dist/nitaq-app $root/opt/nitaq/nitaq-app && chmod 755 $root/opt/nitaq/nitaq-app
+              ln -s /opt/nitaq/nitaq-app $root/usr/bin/nitaq-app
+              cp packaging/icons/nitaq-512.png $root/usr/share/icons/hicolor/512x512/apps/nitaq.png
+              sed "s/@VERSION@/$VERSION/" packaging/linux/control > $root/DEBIAN/control
+              cp packaging/linux/nitaq.desktop $root/usr/share/applications/nitaq.desktop
+              dpkg-deb --build --root-owner-group $root out/Nitaq-Linux-x64.deb
+              ;;
           esac
+          ls -la out
       - uses: actions/upload-artifact@v4
         with:
           name: nitaq-${{ matrix.name }}

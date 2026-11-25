@@ -10,7 +10,11 @@ const L = {
   ar: {
     brand: "نِطاق", title: "مركز التحكم · الجهاز ده", refresh: "حدّث", classic: "افحص ملف", loading: "بيقرا جهازك ويفحص كل المهارات… أول مرة بتاخد حوالي نص دقيقة.",
     nav_ov: "الملف", nav_agents: "المساعدات", nav_skills: "المهارات", nav_mcp: "سيرفرات MCP", nav_gw: "الـ Gateway",
-    nav_agent: "وكيل نِطاق", nav_policy: "السياسة", nav_log: "السجل",
+    nav_agent: "وكيل نِطاق", nav_policy: "السياسة", nav_log: "السجل", nav_settings: "الإعدادات",
+    se_h: "الإعدادات", se_p: "كل حاجة هنا محفوظة على جهازك بس.", se_lang: "اللغة", se_key: "مفتاح Gemini (للوكيل)",
+    se_key_on: "محفوظ", se_key_off: "مش محفوظ", se_key_change: "غيّر المفتاح", se_key_remove: "امسح المفتاح",
+    se_version: "الإصدار", se_update: "شوف آخر إصدار", se_data: "بيانات نِطاق على جهازك", se_links: "لينكات",
+    se_site: "الموقع", se_repo: "الكود على GitHub", se_demo: "اعمل مجلد التجربة من جديد", se_saved: "اتحفظ", se_removed: "اتمسح",
     ov_safe1: "الجهاز ده", ov_safe2: "تحت نِطاق.", ov_open1: "الجهاز ده", ov_open2: "مكشوف.",
     ov_lead_safe: "فيه حماية متركّبة على مساعد واحد على الأقل. أي فعل برّه النطاق هيترفض، وهتلاقي القرار في السجل.",
     ov_lead_open: "لقينا مساعدات وأدوات على جهازك، بس مفيش حماية متركّبة لسه. اختار مساعد من «المساعدات» وعاين الحماية قبل ما تطبّقها.",
@@ -58,7 +62,11 @@ const L = {
   en: {
     brand: "Nitaq", title: "Control center · this computer", refresh: "Refresh", classic: "Check a file", loading: "Reading your computer and scanning every skill… the first time takes about half a minute.",
     nav_ov: "File", nav_agents: "Agents", nav_skills: "Skills", nav_mcp: "MCP servers", nav_gw: "Gateway",
-    nav_agent: "Nitaq agent", nav_policy: "Policy", nav_log: "Log",
+    nav_agent: "Nitaq agent", nav_policy: "Policy", nav_log: "Log", nav_settings: "Settings",
+    se_h: "Settings", se_p: "Everything here is stored on this computer only.", se_lang: "Language", se_key: "Gemini key (for the agent)",
+    se_key_on: "saved", se_key_off: "not saved", se_key_change: "Change the key", se_key_remove: "Remove the key",
+    se_version: "Version", se_update: "See the latest release", se_data: "Nitaq's data on this computer", se_links: "Links",
+    se_site: "Website", se_repo: "Code on GitHub", se_demo: "Recreate the demo folder", se_saved: "Saved", se_removed: "Removed",
     ov_safe1: "This computer is", ov_safe2: "inside the scope.", ov_open1: "This computer is", ov_open2: "exposed.",
     ov_lead_safe: "At least one agent is protected. Any action outside the scope is refused, and the decision is in the log.",
     ov_lead_open: "We found agents and tools on this computer, but no protection is installed yet. Pick an agent under Agents and preview the protection before applying it.",
@@ -213,7 +221,7 @@ function render() {
   if (!data) return;
   const root = $("v-" + view);
   root.textContent = "";
-  ({ov, agents, skills, mcp, gw, agent, policy, log})[view](root);
+  ({ov, agents, skills, mcp, gw, agent, policy, log, settings})[view](root);
 }
 function isProtected() {
   return data.agents.some((a) => a.hook || a.mcp.some((m) => m.protected));
@@ -581,6 +589,37 @@ async function log(root) {
       h("span", {text: String(x.ts || x.time || "").slice(11, 19)}), h("b", {text: x.allowed === false ? "BLOCK" : (x.decision || "ALLOW")}),
       h("span", {class: "ltr", text: `${x.tool || ""} ${x.rule || ""} ${(x.hosts || []).join(", ")}`})))));
   } catch (e) { box.append(h("p", {class: "err", text: e.message})); }
+}
+
+async function settings(root) {
+  root.append(head(T.se_h, T.se_p));
+  const box = h("div", {}); root.append(box);
+  let st;
+  try { st = await api("/api/settings"); } catch (e) { box.append(h("p", {class: "err", text: e.message})); return; }
+  const inp = h("input", {type: "password", class: "ltr", placeholder: T.key_ph, "aria-label": T.key_ph, autocomplete: "off"});
+  const link = (href, text) => h("a", {class: "btn sm", href, target: "_blank", rel: "noopener noreferrer", text});
+  box.append(h("div", {class: "records"},
+    h("article", {class: "rec"}, h("header", {}, h("h3", {text: T.se_key}),
+        h("span", {class: "tag" + (st.key_set ? "" : " line"), text: st.key_set ? `${T.se_key_on} ${st.key_hint}` : T.se_key_off})),
+      h("div", {class: "body"},
+        h("p", {class: "small", text: T.key_p}), h("p", {class: "small"}, h("code", {class: "ltr", text: st.key_file})),
+        h("div", {class: "acts"}, inp,
+          h("button", {class: "btn ink sm", type: "button", text: T.se_key_change, onclick: (e) => busy(e.currentTarget, async () => {
+            await api("/api/agent/key", {key: inp.value.trim()}); inp.value = ""; toast(T.se_saved); chat.started = false; render(); })}),
+          st.key_set ? h("button", {class: "btn danger sm", type: "button", text: T.se_key_remove, onclick: (e) => busy(e.currentTarget, async () => {
+            await api("/api/agent/key/remove", {}); toast(T.se_removed); chat.started = false; render(); })}) : null),
+        h("p", {}, h("a", {class: "btn sm", href: "https://aistudio.google.com/apikey", target: "_blank", rel: "noopener noreferrer", text: T.key_get})))),
+    h("article", {class: "rec"}, h("header", {}, h("h3", {text: T.se_version}), h("span", {class: "tag", text: "v" + st.version})),
+      h("div", {class: "body"},
+        h("div", {class: "acts"}, link(st.releases, T.se_update)),
+        h("ul", {class: "rows"},
+          h("li", {}, h("b", {text: T.se_lang + ":"}), h("button", {class: "btn sm", type: "button", text: lang === "ar" ? "English" : "العربية",
+            onclick: () => $("lang").click()})),
+          h("li", {}, h("b", {text: T.se_data + ":"}), h("code", {class: "ltr", text: `${st.data_dir} · ${st.demo_dir}`}))),
+        h("div", {class: "acts"},
+          h("button", {class: "btn sm", type: "button", text: T.se_demo, onclick: (e) => busy(e.currentTarget, async () => { await api("/api/demo/init", {}); toast(T.a_made); })})),
+        h("p", {class: "cfg-k", text: T.se_links}),
+        h("div", {class: "acts"}, link(st.site, T.se_site), link(st.repo, T.se_repo))))));
 }
 
 applyLang();

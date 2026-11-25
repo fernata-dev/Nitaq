@@ -241,3 +241,23 @@ def test_desktop_app_serves_the_console_and_doubles_as_the_cli(tmp_path, monkeyp
     monkeypatch.setenv("NITAQ_NO_NATIVE", "1")
     assert desktop.run(tmp_path) == 0 and "/console/#token=" in opened[0]
     assert desktop.main(["agents"]) == 0                # with arguments the app is the nitaq command
+
+
+def test_settings_page_api_and_key_handling(served, monkeypatch, tmp_path):
+    app, port, root, home = served
+    monkeypatch.setenv("APPDATA", str(tmp_path / "appdata"))
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path / "cfg"))
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+    from nitaq.agent import gemini
+    monkeypatch.setattr(gemini, "key_file", lambda: tmp_path / "cfg" / "nitaq" / "gemini.key")
+    tok = {"X-Nitaq-Token": app.token}
+    assert req(port, "GET", "/console/")[0] == 200
+    d = json.loads(req(port, "GET", "/api/settings", headers=tok)[2])
+    assert d["key_set"] is False and d["version"]
+    assert req(port, "POST", "/api/agent/key", {"key": "short"}, tok)[0] == 400
+    assert req(port, "POST", "/api/agent/key", {"key": "AIza" + "x" * 35}, tok)[0] == 200
+    d = json.loads(req(port, "GET", "/api/settings", headers=tok)[2])
+    assert d["key_set"] and d["key_hint"] == "…xxxx" and "AIza" not in json.dumps(d)     # the key never comes back
+    assert req(port, "POST", "/api/agent/key/remove", {}, tok)[0] == 200
+    assert json.loads(req(port, "GET", "/api/settings", headers=tok)[2])["key_set"] is False

@@ -12,4 +12,4 @@ Nitaq reduces the damage an injected instruction can cause; it does not stop a
 model from following it.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"

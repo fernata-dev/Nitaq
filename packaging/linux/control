@@ -1,0 +1,10 @@
+Package: nitaq
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Mohamed Ahmed (fernata-dev) <https://github.com/fernata-dev>
+Homepage: https://byhamo.bond
+Description: Nitaq - stops AI agents from acting on hidden instructions
+ The Nitaq control center: your AI agents and their protection, skill scanning,
+ the Nitaq Gateway (MCP) with approvals, and the Nitaq agent. Runs on this computer only.

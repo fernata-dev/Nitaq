@@ -18,7 +18,7 @@
   <span class="device ltr" id="device"></span>
   <span class="grow"></span>
   <button class="tbtn" type="button" id="refresh" data-t="refresh">حدّث</button>
-  <a class="tbtn" href="../#" id="classic" data-t="classic">افحص ملف</a>
+  <a class="tbtn" href="../#" id="classic" target="_blank" rel="noopener" data-t="classic">افحص ملف</a>
   <button class="tbtn" type="button" id="lang">English</button>
 </header>
 <div class="shell">
@@ -31,6 +31,7 @@
     <button type="button" data-view="agent" data-t="nav_agent">وكيل نِطاق</button>
     <button type="button" data-view="policy" data-t="nav_policy">السياسة</button>
     <button type="button" data-view="log" data-t="nav_log">السجل</button>
+    <button type="button" data-view="settings" data-t="nav_settings">الإعدادات</button>
     <p class="rail-foot ltr" id="ver"></p>
   </nav>
   <main id="main" tabindex="-1">
@@ -43,6 +44,7 @@
     <section class="view" id="v-agent" hidden></section>
     <section class="view" id="v-policy" hidden></section>
     <section class="view" id="v-log" hidden></section>
+    <section class="view" id="v-settings" hidden></section>
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

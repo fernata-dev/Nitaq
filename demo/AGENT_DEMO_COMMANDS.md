@@ -21,7 +21,7 @@ pipx install --editable .
 ```bash
 nitaq --version
 ```
-المفروض يطبع `nitaq 1.0.0`. لو قال إن الأمر مش موجود، استخدم `python3 -m nitaq` (أو `py -m nitaq` على ويندوز) بدل `nitaq` في كل الأوامر اللي جاية.
+المفروض يطبع `nitaq 1.1.0`. لو قال إن الأمر مش موجود، استخدم `python3 -m nitaq` (أو `py -m nitaq` على ويندوز) بدل `nitaq` في كل الأوامر اللي جاية.
 
 ---
 

@@ -1,7 +1,7 @@
 // "About" screen: the name, the three faces, privacy, honest limits.
 import {h, icon, t} from "./dom.js";
 
-export const VERSION = "1.0.0";
+export const VERSION = "1.1.0";
 
 export function aboutView(root, ctx) {
   const v = h("div", {class: "view"});
