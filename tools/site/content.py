@@ -192,10 +192,10 @@ T = {
   # ---- desktop app downloads (m24)
   "nav_dl": "التطبيق", "dl_h2": "نزّل تطبيق نِطاق — من غير ترمنال",
   "dl_p": "كل حاجة في الموقع ده موجودة في تطبيق واحد على جهازك: المساعدات والمهارات والـ Gateway ووكيل نِطاق بزراير وافق وارفض. بيشتغل على جهازك بس.",
-  "dl_win": "Windows 10 / 11", "dl_win_how": "دوس عليه مرتين. لو Windows قال «Windows protected your PC» دوس More info ثم Run anyway، لأن التطبيق لسه مش موقّع.",
-  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "فك الضغط، وانقل Nitaq لـ Applications، وأول مرة دوس كليك يمين ثم Open.",
-  "dl_lin": "Linux (x64)", "dl_lin_how": "فك الضغط وشغّل Nitaq/install.sh، وبعدين افتح Nitaq من قائمة التطبيقات.",
-  "dl_btn": "نزّل", "dl_yours": "ده جهازك", "dl_all": "كل الإصدارات والملاحظات",
+  "dl_win": "Windows 10 / 11", "dl_win_how": "نزّل المثبّت ودوس عليه مرتين: هيحط نِطاق في قائمة ابدأ وعلى سطح المكتب، ومعاه طريقة لإزالته. لو Windows قال «Windows protected your PC» دوس More info ثم Run anyway، لأن التطبيق لسه مش موقّع.",
+  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "افتح ملف DMG واسحب Nitaq لفولدر Applications. وأول مرة دوس عليه كليك يمين ثم Open.",
+  "dl_lin": "Linux (x64)", "dl_lin_how": "على Ubuntu وDebian نزّل ملف ‎.deb‎ وافتحه، أو شغّل sudo apt install ./Nitaq-Linux-x64.deb. ولأي توزيعة تانية فيه ملف tar.gz ومعاه install.sh.",
+  "dl_btn": "نزّل", "dl_alt": "أو", "dl_yours": "ده جهازك", "dl_all": "كل الإصدارات والملاحظات",
   "dl_note": "الوكيل محتاج مفتاح Gemini مجاني، وبتحطه في التطبيق مرة واحدة ومش بيطلع من جهازك. والمطورين يقدروا يثبّتوه بـ pipx زي ما تحت.",
 
   # ---- dossier redesign (m23)
@@ -339,10 +339,10 @@ T = {
   # ---- desktop app downloads (m24)
   "nav_dl": "The app", "dl_h2": "Download the Nitaq app — no terminal needed",
   "dl_p": "Everything on this site, in one app on your computer: your agents, skills, the Gateway and the Nitaq agent with approve and deny buttons. It runs on your computer only.",
-  "dl_win": "Windows 10 and 11", "dl_win_how": "Double-click it. If Windows says \"Windows protected your PC\", click More info, then Run anyway (the app is not code-signed yet).",
-  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "Unzip, move Nitaq to Applications, and the first time right-click it and choose Open.",
-  "dl_lin": "Linux (x64)", "dl_lin_how": "Unpack it and run Nitaq/install.sh, then open Nitaq from your app menu.",
-  "dl_btn": "Download", "dl_yours": "your computer", "dl_all": "All releases and notes",
+  "dl_win": "Windows 10 and 11", "dl_win_how": "Download the installer and double-click it: it adds Nitaq to the Start menu and the desktop, with an uninstaller. If Windows says \"Windows protected your PC\", click More info, then Run anyway (the app is not code-signed yet).",
+  "dl_mac": "macOS (Apple Silicon)", "dl_mac_how": "Open the DMG and drag Nitaq into Applications. The first time, right-click it and choose Open.",
+  "dl_lin": "Linux (x64)", "dl_lin_how": "On Ubuntu and Debian, download the .deb and open it, or run sudo apt install ./Nitaq-Linux-x64.deb. Any other distribution: the tar.gz with install.sh.",
+  "dl_btn": "Download", "dl_alt": "or", "dl_yours": "your computer", "dl_all": "All releases and notes",
   "dl_note": "The agent needs a free Gemini key, which you paste into the app once and never leaves your computer. Developers can install it with pipx, below.",
 
   # ---- dossier redesign (m23)

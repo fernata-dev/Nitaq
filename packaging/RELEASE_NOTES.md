@@ -4,9 +4,9 @@ The Nitaq control center in its own window: no terminal, no Python needed.
 
 | System | Download | How to open |
 |---|---|---|
-| **Windows 10/11** | `Nitaq-Windows-x64.exe` | Double-click. If Windows SmartScreen says "Windows protected your PC", click **More info → Run anyway** (the app is not code-signed yet). |
-| **macOS (Apple Silicon)** | `Nitaq-macOS.zip` | Unzip, move **Nitaq** to Applications, then **right-click → Open** the first time (the app is not notarized yet). |
-| **Linux (x64)** | `Nitaq-Linux-x64.tar.gz` | `tar xzf Nitaq-Linux-x64.tar.gz && Nitaq/install.sh`, then open **Nitaq** from your app menu. It opens in Chrome/Chromium/Edge/Brave as an app window, or in your default browser. |
+| **Windows 10/11** | `Nitaq-Setup-Windows-x64.exe` (installer) or `Nitaq-Windows-x64.exe` (portable) | Run the installer: Nitaq goes to the Start menu and the desktop, with an uninstaller. If SmartScreen says "Windows protected your PC", click **More info → Run anyway** (not code-signed yet). |
+| **macOS (Apple Silicon)** | `Nitaq-macOS.dmg` or `Nitaq-macOS.zip` | Open the DMG, drag **Nitaq** to Applications, then **right-click → Open** the first time (not notarized yet). |
+| **Linux (x64)** | `Nitaq-Linux-x64.deb` (Ubuntu/Debian) or `Nitaq-Linux-x64.tar.gz` | `sudo apt install ./Nitaq-Linux-x64.deb`, or unpack the tar.gz and run `Nitaq/install.sh`. Opens in Chrome/Chromium/Edge/Brave as an app window, or your default browser. |
 
 What is inside: your AI agents (Claude Code, Gemini CLI) and their protection, every skill file with Nitaq's
 verdict, MCP servers, the Nitaq Gateway with approve/deny buttons, the Nitaq agent (Gemini) with the two demo

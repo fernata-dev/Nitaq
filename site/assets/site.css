@@ -227,6 +227,8 @@ a.frame span::after{content:"";display:inline-block;width:.6em;height:.6em;margi
 .dl-rows b{font:900 1.15rem var(--f-disp)}
 .dl-rows code{font-size:.78rem;color:var(--ink-3)}
 .dl-rows .you{display:none}
+.dl-rows .alt{white-space:nowrap}
+.dl-rows .alt a{font-family:var(--f-mono);font-size:.85em}
 .dl-rows li.mine{background:var(--sheet);outline:2px solid var(--ink);outline-offset:-2px}
 .dl-rows li.mine .you{display:block;position:absolute;inset-inline-start:.4rem;top:-.75rem;font:700 .72rem var(--f-disp);font-style:normal;background:var(--red);color:#fff;padding:0 .5rem}
 @media (max-width:900px){.dl-rows li{grid-template-columns:minmax(0,1fr) auto}.dl-rows li>span{grid-column:1/-1}}

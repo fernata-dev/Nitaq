@@ -10,7 +10,8 @@ No terminal, no Python: the Nitaq control center in its own window, with the Nit
 
 | Windows 10 / 11 | macOS (Apple Silicon) | Linux (x64) |
 |---|---|---|
-| [**Nitaq-Windows-x64.exe**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Windows-x64.exe) | [**Nitaq-macOS.zip**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-macOS.zip) | [**Nitaq-Linux-x64.tar.gz**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Linux-x64.tar.gz) |
+| [**Nitaq-Setup-Windows-x64.exe**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Setup-Windows-x64.exe) (installer) | [**Nitaq-macOS.dmg**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-macOS.dmg) | [**Nitaq-Linux-x64.deb**](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Linux-x64.deb) (Ubuntu / Debian) |
+| [portable .exe](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Windows-x64.exe) | [.zip](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-macOS.zip) | [.tar.gz](https://github.com/fernata-dev/Nitaq/releases/latest/download/Nitaq-Linux-x64.tar.gz) (any distribution) |
 
 Not code-signed yet: Windows → *More info → Run anyway*; macOS → right-click → *Open* the first time.
 Website: **https://byhamo.bond** · All releases: [releases](https://github.com/fernata-dev/Nitaq/releases).
